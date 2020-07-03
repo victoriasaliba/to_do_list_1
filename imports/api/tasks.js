@@ -1,19 +1,25 @@
 import { Meteor } from 'meteor/meteor';
 import {Mongo} from 'meteor/mongo';
 import {check} from 'meteor/check';
+import { isLoggedIn } from '../ui/AccountsUIWrapperLogin';
 
 export const Tasks = new Mongo.Collection('tasks');
 
 if(Meteor.isServer){
     //this code only runs on the server
     // Only publish tasks that are public or belong to the current user
+   
     Meteor.publish('tasks', function tasksPublication() {
-        return Tasks.find({
-            $or: [
-              { private: { $ne: true } },
-              { owner: this.userId },
-            ],
-        });
+        if(isLoggedIn()===true){
+            return Tasks.find({
+                $or: [
+                    { private: { $ne: true } },
+                    { owner: this.userId },
+                ],                
+            });
+        }else{
+            console.log('Please log in.')
+        }
     });
 }
 
