@@ -1,7 +1,7 @@
 body {
   font-family: sans-serif;
   background-color: #315481;
-  background-image: linear-gradient(to bottom, #315481, #918e82 100%);
+  background-image: linear-gradient(to bottom, #315481, white 100%);
   background-attachment: fixed;
  
   position: absolute;
@@ -17,10 +17,17 @@ body {
 }
  
 .container {
-  max-width: 600px;
+  max-width: 800px;
   margin: 0 auto;
   min-height: 100%;
   background: white;
+}
+
+.menu{
+  max-width: 800px;
+  margin: 0 auto;
+  min-height: 100%;
+  background:#ADD8E6;
 }
  
 header {
@@ -123,3 +130,9 @@ header .hide-completed {
     padding-bottom: 5px;
   }
 }
+
+
+
+
+
+

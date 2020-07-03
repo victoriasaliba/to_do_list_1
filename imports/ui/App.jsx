@@ -1,12 +1,39 @@
+
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import { Meteor } from 'meteor/meteor';
 import { withTracker } from 'meteor/react-meteor-data';
+
  
 import { Tasks } from '../api/tasks.js';
 import Task from './Task.js';
 
 import AccountsUIWrapper from './AccountsUIWrapper.js';
+import Sign from './AccountsUIWrapperLogin.js';
+
+//import Todo from '../todo/todo.jsx'
+//import About from '../about/about.jsx'
+
+
+
+/*
+import React, { Component } from 'react';
+import ReactDOM from 'react-dom';
+import { Meteor } from 'meteor/meteor';
+
+import { withTracker } from 'meteor/react-meteor-data';
+
+import { Tasks } from '../api/tasks.js';
+
+import Task from './Task.js';
+
+
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import Switch from '@material-ui/core/Switch';
+import Typography from '@material-ui/core/Typography';
+import SignIn from './AccountsUIWrapperLogin.js';
+*/
+
 
 // App component - represents the whole app
   class App extends Component {
@@ -27,6 +54,12 @@ import AccountsUIWrapper from './AccountsUIWrapper.js';
       //clear form
       ReactDOM.findDOMNode(this.refs.textInput).value = '';
     }
+
+    updateUser(){
+      Meteor.call('users.update', Meteor.userId);
+      console.log(this.props.currentUser);
+    }
+
 
   toggleHideCompleted(){
     this.setState({
@@ -52,7 +85,7 @@ import AccountsUIWrapper from './AccountsUIWrapper.js';
      );
     });
   }
- 
+  
   render() {
     return (
       <div className="container">
@@ -67,8 +100,8 @@ import AccountsUIWrapper from './AccountsUIWrapper.js';
               />
               Hide Completed Tasks
           </label>
-          
-          <AccountsUIWrapper />
+        
+          <AccountsUIWrapper/>
           { this.props.currentUser ?
             <form className="new-task" onSubmit={this.handleSubmit.bind(this)} >
               <input
@@ -84,6 +117,7 @@ import AccountsUIWrapper from './AccountsUIWrapper.js';
           {this.renderTasks()}
         </ul>
       </div>
+    
     );
   }
 }
@@ -96,3 +130,68 @@ export default withTracker(() => {
     currentUser: Meteor.user(),
   };
 })(App);
+
+
+
+
+/*
+render() {
+
+  return (
+    <div>
+    { this.props.currentUser ?
+        <div className="container">
+          <header>
+              <div>
+                <Typography variant="h3" gutterBottom>
+                  Todo List ({this.props.incompleteCount})
+                </Typography>
+
+                  <FormControlLabel className="hide-completed"
+                          control={
+                            <Switch
+                              checked={this.state.hideCompleted}
+                              onChange={this.toggleHideCompleted.bind(this)}
+                              name="checkedB"
+                              color="primary"
+                            />
+                          }
+                          label="Ocultar tarefas completadas"
+                        />
+
+                        <FormControlLabel className="hide-completed"
+                                control={
+                                  <Switch
+                                    checked={this.state.hideCompleted}
+                                    onChange={this.updateUser.bind(this)}
+                                    name="checkedB"
+                                    color="primary"
+                                  />
+                                }
+                                label="Mudar usuario"
+                              />
+
+              </div>
+             
+          </header>
+
+          {this.renderTasks()}
+      </div> : <SignIn />
+    }
+    </div>
+  );
+}
+}
+
+export default withTracker(() => {
+
+Meteor.subscribe('tasks', "");
+
+return {
+  tasks: Tasks.find({}, { sort: { createdAt: -1 } }).fetch(),
+  incompleteCount: Tasks.find({ checked: { $ne: true } }).count(),
+  currentUser: Meteor.user(),
+};
+})(App);
+
+*/
