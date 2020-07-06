@@ -5,7 +5,8 @@ import MenuItem from '@material-ui/core/MenuItem';
 import App from '../ui/App.jsx'
 import Todo from './todo.jsx'
 import About from './about.jsx'
-
+import SignIn from '../ui/AccountsUIWrapperLogin.js'
+import AccountsUIWrapper from '../ui/AccountsUIWrapper.js';
 
 import React, { Fragment } from "react";
 import {
@@ -15,6 +16,7 @@ import {
   Link,
   NavLink
 } from "react-router-dom";
+
 
 export default function SimpleMenu() {
     const [anchorEl, setAnchorEl] = React.useState(null);
@@ -31,7 +33,7 @@ export default function SimpleMenu() {
         <Router>
           <div className='menu'>
                 <Button aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick}>
-                    Open Menu
+                    Menu
                 </Button>
                 <Menu id="simple-menu" anchorEl={anchorEl} keepMounted open={Boolean(anchorEl)} onClose={handleClose}>
                 <nav>
@@ -45,6 +47,14 @@ export default function SimpleMenu() {
                     <li>
                     <NavLink to="/todo" activeStyle={{fontWeight: "bold"}}>Todo</NavLink>
                     </li>
+                    <li>
+                    <NavLink to="/login" activeStyle={{fontWeight: "bold"}}>Login</NavLink>
+                    </li>
+                    <li>
+                    <NavLink to="/login2" activeStyle={{fontWeight: "bold"}}>Login2</NavLink>
+                    </li>
+
+
                 </ul>
                 </nav>
                 </Menu>
@@ -61,13 +71,17 @@ export default function SimpleMenu() {
                 <Route path="/todo" component={Todo}>
                     <Todo/>
                 </Route>
+                <Route path="/login" component={AccountsUIWrapper}>
+                   <AccountsUIWrapper/>
+                </Route>
+                <Route path="/login2" component={SignIn}>
+                   <SignIn/>
+                </Route>
                 </Switch>
         </div>
         </Router>
     );
     }
-
-
 
 
 

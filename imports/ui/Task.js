@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import {Meteor} from 'meteor/meteor';
 import classnames from 'classnames';
+import DeleteIcon from '@material-ui/icons/Delete';
+import Avatar from '@material-ui/core/Avatar';
+import AssignmentIcon from '@material-ui/icons/Assignment';
 
 
 import {Tasks} from '../api/tasks.js';
@@ -27,10 +30,12 @@ export default class Task extends Component {
       }); 
     return (
       <li className={taskClassName}>
-          <button className="delete" onClick={this.deleteThisTask.bind(this)}>
+          <DeleteIcon className="delete" onClick={this.deleteThisTask.bind(this)}>
               &times;
-          </button>
-
+          </DeleteIcon>
+          <Avatar>
+             <AssignmentIcon />
+         </Avatar>
           <input
             type="checkbox"
             readOnly
@@ -40,7 +45,7 @@ export default class Task extends Component {
         
          {this.props.showPrivateButton ? (
               <button className="toggle-private" onClick={this.togglePrivate.bind(this)}>
-                {this.props.task.private ? 'Private' : 'Public'}
+                {this.props.task.private ? 'Privado' : 'Público'}
               </button>
             ) : ''}
      
@@ -51,3 +56,4 @@ export default class Task extends Component {
     );
   }
 }
+

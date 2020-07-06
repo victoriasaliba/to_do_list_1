@@ -10,6 +10,8 @@ import { BrowserRouter } from 'react-router-dom';
 import Index from '../imports/template/menu.js'
 import SimpleMenu from '../imports/template/menu.js';
 
+import InteractiveList from '../imports/ui/list'
+
 Meteor.startup(() => {
   render(
   <BrowserRouter>
