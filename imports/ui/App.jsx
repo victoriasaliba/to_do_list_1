@@ -1,4 +1,3 @@
-
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import { Meteor } from 'meteor/meteor';
@@ -9,26 +8,8 @@ import { Tasks } from '../api/tasks.js';
 import Task from './Task.js';
 
 import AccountsUIWrapper from './AccountsUIWrapper.js';
-import Sign from './AccountsUIWrapperLogin.js';
-import { Typography } from '@material-ui/core';
-
-
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemAvatar from '@material-ui/core/ListItemAvatar';
-import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
-import ListItemText from '@material-ui/core/ListItemText';
-import Avatar from '@material-ui/core/Avatar';
-import IconButton from '@material-ui/core/IconButton';
-import FormGroup from '@material-ui/core/FormGroup';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Checkbox from '@material-ui/core/Checkbox';
-import Grid from '@material-ui/core/Grid';
-import FolderIcon from '@material-ui/icons/Folder';
-import DeleteIcon from '@material-ui/icons/Delete';
-import AssignmentIcon from '@material-ui/icons/Assignment';
-import Switch from '@material-ui/core/Switch';
-
+import history from "history";
+import { isLoggedIn } from '../ui/AccountsUIWrapperLogin';
 
 function generate(element) {
   return [0, 1, 2].map((value) =>
@@ -37,6 +18,8 @@ function generate(element) {
     }),
   );
 }
+
+
 
 // App component - represents the whole app
   class App extends Component {
@@ -107,7 +90,7 @@ function generate(element) {
               Ocultar tarefas completadas
           </label>
         
-          
+          <AccountsUIWrapper/>
           { this.props.currentUser ?
             <form className="new-task" onSubmit={this.handleSubmit.bind(this)} >
               <input
@@ -136,134 +119,3 @@ export default withTracker(() => {
     currentUser: Meteor.user(),
   };
 })(App);
-
-  /*
-  render() {
-    return (   
-        <div className="container">
-          <header>
-            <Typography variant="h5">Todo List: {this.props.imcompleteCount} incompletas
-            </Typography>
-            <List>
-                    {generate(
-                        <ListItem>
-                          <ListItemAvatar>
-                            <Avatar>
-                            <AssignmentIcon />
-                            </Avatar>
-                          </ListItemAvatar>
-                          <ListItemSecondaryAction>
-                            <IconButton edge="end" aria-label="delete">
-                              <DeleteIcon />
-                            </IconButton>
-                          </ListItemSecondaryAction>
-                        </ListItem>,
-                      )}
-                <FormControlLabel className="hide-completed"
-                            control={
-                              <Switch
-                              type="checkbox"
-                              readOnly
-                              checked={this.state.hideCompleted}
-                              onClick={this.toggleHideCompleted.bind(this)}
-                              />
-                            }
-                            label="Ocultar tarefas completadas"
-                          />
-                
-                { this.props.currentUser ?
-                  <form className="new-task" onSubmit={this.handleSubmit.bind(this)} >
-                    <input
-                      type="text"
-                      ref="textInput"
-                      placeholder="Adicione novas tarefas"
-                    />
-                  </form> : ''
-                }
-            </List>
-          </header>
-     
-          <ul>
-            {this.renderTasks()}
-          </ul>
-        </div>
-      
-      );
-    }
-  }
-  export default withTracker(() => {
-    Meteor.subscribe('tasks');
-
-    return {
-      tasks: Tasks.find({}, { sort: { createdAt: -1}}).fetch(),
-      imcompleteCount: Tasks.find({checked: {$ne: true}}).count(),
-      currentUser: Meteor.user(),
-
-
-  };
-})(App);
-
-
-*/
-
-/*
-render() {
-
-  return (
-    <div>
-    { this.props.currentUser ?
-        <div className="container">
-          <header>
-              <div>
-                <Typography variant="h3" gutterBottom>
-                  Todo List ({this.props.incompleteCount})
-                </Typography>
-
-                  <FormControlLabel className="hide-completed"
-                          control={
-                            <Switch
-                              checked={this.state.hideCompleted}
-                              onChange={this.toggleHideCompleted.bind(this)}
-                              name="checkedB"
-                              color="primary"
-                            />
-                          }
-                          label="Ocultar tarefas completadas"
-                        />
-
-                        <FormControlLabel className="hide-completed"
-                                control={
-                                  <Switch
-                                    checked={this.state.hideCompleted}
-                                    onChange={this.updateUser.bind(this)}
-                                    name="checkedB"
-                                    color="primary"
-                                  />
-                                }
-                                label="Mudar usuario"
-                              />
-
-              </div>
-             
-          </header>
-
-          {this.renderTasks()}
-      </div> : <SignIn />
-    }
-    </div>
-  );
-}
-}
-
-export default withTracker(() => {
-
-Meteor.subscribe('tasks', "");
-
-return {
-  tasks: Tasks.find({}, { sort: { createdAt: -1 } }).fetch(),
-  incompleteCount: Tasks.find({ checked: { $ne: true } }).count(),
-  currentUser: Meteor.user(),
-};
-})(App);
-
-*/

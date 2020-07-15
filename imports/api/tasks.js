@@ -3,7 +3,9 @@ import {Mongo} from 'meteor/mongo';
 import {check} from 'meteor/check';
 import { isLoggedIn } from '../ui/AccountsUIWrapperLogin';
 
+
 export const Tasks = new Mongo.Collection('tasks');
+
 
 if(Meteor.isServer){
     //this code only runs on the server
@@ -48,8 +50,9 @@ Meteor.methods({
           throw new Meteor.Error('not-authorized');
         }
     
-
-        Tasks.remove(taskId);
+        if (task.owner === this.userId){
+            Tasks.remove(taskId);
+        }
     },
     'tasks.setChecked'(taskId, setChecked){
         check(taskId, String);

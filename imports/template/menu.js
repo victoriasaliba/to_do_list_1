@@ -1,4 +1,3 @@
-
 import Button from '@material-ui/core/Button';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
@@ -7,6 +6,7 @@ import Todo from './todo.jsx'
 import About from './about.jsx'
 import SignIn from '../ui/AccountsUIWrapperLogin.js'
 import AccountsUIWrapper from '../ui/AccountsUIWrapper.js';
+import EditTask from '../ui/TaskEdit.js'
 
 import React, { Fragment } from "react";
 import {
@@ -16,6 +16,7 @@ import {
   Link,
   NavLink
 } from "react-router-dom";
+import TaskEdit from '../ui/TaskEdit.js';
 
 
 export default function SimpleMenu() {
@@ -30,7 +31,7 @@ export default function SimpleMenu() {
     };
   
     return (
-        <Router>
+        <Router history={history}>
           <div className='menu'>
                 <Button aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick}>
                     Menu
@@ -53,6 +54,7 @@ export default function SimpleMenu() {
                     <li>
                     <NavLink to="/login2" activeStyle={{fontWeight: "bold"}}>Login2</NavLink>
                     </li>
+                   
 
 
                 </ul>
@@ -61,7 +63,7 @@ export default function SimpleMenu() {
                
                 {/* A <Switch> looks through its children <Route>s and
                     renders the first one that matches the current URL. */}
-                <Switch>
+                
                 <Route path="/home" component={App}>
                     <App/>
                 </Route>
@@ -77,11 +79,9 @@ export default function SimpleMenu() {
                 <Route path="/login2" component={SignIn}>
                    <SignIn/>
                 </Route>
-                </Switch>
+                
+                
         </div>
         </Router>
     );
-    }
-
-
-
+}
