@@ -119,3 +119,8 @@ export default withTracker(() => {
     currentUser: Meteor.user(),
   };
 })(App);
+<<<<<<< HEAD
+=======
+
+  
+>>>>>>> c2bf957d7a4b6a004b151c01a947249c756374e2
