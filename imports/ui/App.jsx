@@ -11,15 +11,6 @@ import AccountsUIWrapper from './AccountsUIWrapper.js';
 import history from "history";
 import { isLoggedIn } from '../ui/AccountsUIWrapperLogin';
 
-function generate(element) {
-  return [0, 1, 2].map((value) =>
-    React.cloneElement(element, {
-      key: value,
-    }),
-  );
-}
-
-
 
 // App component - represents the whole app
   class App extends Component {
@@ -119,8 +110,3 @@ export default withTracker(() => {
     currentUser: Meteor.user(),
   };
 })(App);
-<<<<<<< HEAD
-=======
-
-  
->>>>>>> c2bf957d7a4b6a004b151c01a947249c756374e2

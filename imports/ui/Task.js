@@ -21,6 +21,11 @@ import { List } from '@material-ui/core';
 import EditTask from './TaskEdit.js'
 import { createBrowserHistory } from "history";
 
+
+//import { matchPath } from "react-router";
+
+
+
 export const history = createBrowserHistory();
 
 // Task component - represents a single todo item
@@ -36,9 +41,11 @@ export const history = createBrowserHistory();
       Meteor.call('tasks.setPrivate', this.props.task._id, !this.props.task.private);
     }
     editThisTask(){
-        const idTask = this.props.task._id;
-        <Route path={'/edittasks/:idTask'} component={EditTask}/>
-        history.push({ pathname:'/edittasks/:idTask'});
+        const taskId = this.props.task._id;
+        const task = Tasks.findOne(taskId);
+        const url = '/edittask/:task';
+        <Route path={url} component={EditTask}/>
+        this.props.history.push({ pathname: url});
    }
 
   render() {

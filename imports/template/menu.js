@@ -39,21 +39,17 @@ export default function SimpleMenu() {
                 <Menu id="simple-menu" anchorEl={anchorEl} keepMounted open={Boolean(anchorEl)} onClose={handleClose}>
                 <nav>
                 <ul>
-                    <li>
-                    <NavLink to="/home" activeStyle={{fontWeight: "bold"}}>Home</NavLink>
-                    </li>
-                    <li>
-                    <NavLink to="/about" activeStyle={{fontWeight: "bold"}}>About</NavLink>
-                    </li>
-                    <li>
-                    <NavLink to="/todo" activeStyle={{fontWeight: "bold"}}>Todo</NavLink>
-                    </li>
-                    <li>
-                    <NavLink to="/login" activeStyle={{fontWeight: "bold"}}>Login</NavLink>
-                    </li>
-                    <li>
-                    <NavLink to="/login2" activeStyle={{fontWeight: "bold"}}>Login2</NavLink>
-                    </li>
+                    
+                <Button><NavLink to="/home"  activeStyle={{fontWeight: "bold"}} ><MenuItem>Home</MenuItem></NavLink></Button>
+
+                <Button><NavLink to="/about" activeStyle={{fontWeight: "bold"}}><MenuItem>About</MenuItem></NavLink></Button>
+                 
+                <Button><NavLink to="/todo" activeStyle={{fontWeight: "bold"}}><MenuItem>Todo</MenuItem></NavLink></Button>
+                
+                <Button><NavLink to="/login" activeStyle={{fontWeight: "bold"}}><MenuItem>Login</MenuItem></NavLink></Button>
+               
+                <Button><NavLink to="/login2" activeStyle={{fontWeight: "bold"}}><MenuItem>Login2</MenuItem></NavLink></Button>
+      
                    
 
 
@@ -79,6 +75,7 @@ export default function SimpleMenu() {
                 <Route path="/login2" component={SignIn}>
                    <SignIn/>
                 </Route>
+                <Route path={"/edittask"} component={EditTask}/>
                 
                 
         </div>
