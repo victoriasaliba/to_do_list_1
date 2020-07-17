@@ -220,6 +220,7 @@ class EditTaskComponent extends React.Component {
     )
   }
 
+
 }
 
 const EditTaskFunction = (props) => {
