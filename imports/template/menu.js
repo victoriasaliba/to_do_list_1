@@ -75,8 +75,8 @@ export default function SimpleMenu() {
                 <Route path="/login2" component={SignIn}>
                    <SignIn/>
                 </Route>
-                <Route path={"/edittask"} component={EditTask}/>
-                
+                <Route path={"/edittask/:task"} component={EditTask}/>
+
                 
         </div>
         </Router>

@@ -105,21 +105,22 @@ Meteor.methods({
   
     },
 
-    'tasks.update'(taskId, name, description, stateT, date) {
+    'tasks.update'(taskObj) {
+
+        check(taskObj,Object);
+      // check(taskId, String);
+      // check(name, String);
+      // check(description, String);
+      // check(stateT, String);
+      // check(date, String);
   
-      check(taskId, String);
-      check(name, String);
-      check(description, String);
-      check(stateT, String);
-      check(date, String);
+      const task = Tasks.findOne({_id:taskObj._id});
   
-      const task = Tasks.findOne(taskId);
-  
-      if (task.owner !== this.userId) {
+      if (!task||task.owner !== this.userId) {
         throw new Meteor.Error('not-authorized');
       }
   
-      Tasks.update(taskId, { $set: { name: name, description: description, state: stateT, createdAt: date} });
+      return Tasks.update({_id:taskObj._id}, { $set: taskObj});
   
     },
 

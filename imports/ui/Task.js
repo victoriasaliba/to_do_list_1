@@ -43,9 +43,9 @@ export const history = createBrowserHistory();
     editThisTask(){
         const taskId = this.props.task._id;
         const task = Tasks.findOne(taskId);
-        const url = '/edittask/:task';
-        <Route path={url} component={EditTask}/>
-        this.props.history.push({ pathname: url});
+        const url = `/edittask/${taskId}`;
+        // <Route path={url} component={EditTask}/>
+        this.props.history.push(url);
    }
 
   render() {
