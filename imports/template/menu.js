@@ -80,8 +80,12 @@ export default function SimpleMenu() {
                    <SignIn/>
                 </Route>
                 <Route path={"/edittask/:task"} component={EditTask}/>
+<<<<<<< HEAD
                 <Route path={"/user"} component={UserInfo}/>
                 
+=======
+
+>>>>>>> 74ca6e4d23da2fc7abc8ea20c9de24cd096f2f94
                 
         </div>
         </Router>
