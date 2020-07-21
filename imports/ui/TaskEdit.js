@@ -1,4 +1,5 @@
 
+
 import React, { Component } from 'react';
 import { Tasks } from '../api/tasks.js';
 import Task from './Task.js';
@@ -107,103 +108,15 @@ class EditTask extends Component {
   }
 }
 
-class EditTaskComponent extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      text:undefined,
-    }
-  }
-
-  static getDerivedStateFromProps(props, state) {
-    if(!state.text) {
-      return {
-        text:props.task.text,
-      }
-    } else {
-      return {}
-    }
-
-  }
-
-  handleChange = (evt) => {
-    this.setState({text:evt.target.value});
-  }
-
-  save = () => {
-    Meteor.call('tasks.update',{_id:this.props.task._id,text:this.state.text},(e,r)=>{
-      if(!e) {
-        console.log('Salvo com sucesso',r);
-      } else {
-        console.log('Erro:',e);
-      }
-    })
-  }
-
-  render() {
-    const {text} = this.state;
-
-    return(
-        <div style={{width:'100%',display:'flex',flexDirection:'column'}}>
-          <div style={{width:'100%'}}>
-            <label>{'Texto:'}</label>
-            <input type={'text'} id={'text'} value={text} onChange={this.handleChange} />
-          </div>
-          <div style={{width:'100%'}}>
-            <button onClick={()=>this.props.history.push('/home')}>{'Voltar'}</button>
-          </div>
-          <div style={{width:'100%'}}>
-            <button onClick={this.save}>{'Salvar'}</button>
-          </div>
-          {JSON.stringify(this.props.task)}
-        </div>
-    )
-  }
-
-
-}
-
-const EditTaskFunction = (props) => {
-
-  const [text,setText] = React.useState(props.task.text)
-
-  React.useEffect(()=>{
-    if(!text) {
-      setText(props.task.text);
-    }
-  })
-
-  const handleChange = (evt) => {
-    setText(evt.target.value)
-  }
-
-  return (<div style={{width:'100%',display:'flex',flexDirection:'column'}}>
-    <div style={{width:'100%'}}>
-      <label>{'Texto:'}</label>
-      <input type={'text'} id={'text'} value={text} onChange={handleChange} />
-    </div>
-    <div style={{width:'100%'}}>
-
-    </div>
-    {JSON.stringify(props.task)}
-  </div>);
-}
-
 
 export default withTracker((props) => {
-<<<<<<< HEAD
   console.log('props.match.params', props.match.params);
   const id = props.match.params.task
   const handleTask = Meteor.subscribe('tasks', {_id:id});
-=======
-  console.log('props.match.params',props.match.params);
-  const id = props.match.params.task
-  const handleTask = Meteor.subscribe('tasks',{_id:id});
->>>>>>> 74ca6e4d23da2fc7abc8ea20c9de24cd096f2f94
 
   return {
     task: handleTask.ready()?Tasks.findOne({_id:id}):{},
     currentUser: Meteor.user(),
   };
-})(EditTaskComponent);
+})(EditTask);
  
