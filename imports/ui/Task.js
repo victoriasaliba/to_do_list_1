@@ -42,10 +42,8 @@ export const history = createBrowserHistory();
     }
     editThisTask(){
         const taskId = this.props.task._id;
-        const task = Tasks.findOne(taskId);
-        const url = '/edittask/:task';
-        <Route path={url} component={EditTask}/>
-        this.props.history.push({ pathname: url});
+        const url = `/edittask/${taskId}`;
+        this.props.history.push(url);  
    }
 
   render() {
@@ -60,11 +58,11 @@ export const history = createBrowserHistory();
      
       <List className={taskClassName}>
          <Router history={this.props.history}>
-          <DeleteIcon className="delete" onClick={this.deleteThisTask.bind(this)}>
-              &times;
-          </DeleteIcon>
-          <EditIcon className="edit" onClick={this.editThisTask.bind(this)}>
-          </EditIcon>
+            <DeleteIcon className="delete" onClick={this.deleteThisTask.bind(this)}>
+                &times;
+            </DeleteIcon>
+            <EditIcon className="edit" onClick={this.editThisTask.bind(this)}>
+            </EditIcon> 
           <Avatar>
              <AssignmentIcon />
          </Avatar>

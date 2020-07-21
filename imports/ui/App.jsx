@@ -64,6 +64,9 @@ import { isLoggedIn } from '../ui/AccountsUIWrapperLogin';
   }
 
 
+  handleChange = (event) => {
+      this.setState({value:event.target.value})
+  }
 
 
   render() {
@@ -85,6 +88,8 @@ import { isLoggedIn } from '../ui/AccountsUIWrapperLogin';
           { this.props.currentUser ?
             <form className="new-task" onSubmit={this.handleSubmit.bind(this)} >
               <input
+                value={this.state.value}
+                onChange={this.handleChange}
                 type="text"
                 ref="textInput"
                 placeholder="Adicione novas tarefas"
@@ -102,11 +107,13 @@ import { isLoggedIn } from '../ui/AccountsUIWrapperLogin';
   }
 }
 export default withTracker(() => {
-  Meteor.subscribe('tasks');
+  const handleTask = Meteor.subscribe('tasks');
+
+  const loading = !handleTask.ready();
 
   return {
-    tasks: Tasks.find({}, { sort: { createdAt: -1}}).fetch(),
-    imcompleteCount: Tasks.find({checked: {$ne: true}}).count(),
+    tasks: loading?[]:Tasks.find({}, { sort: { createdAt: -1}}).fetch(),
+    imcompleteCount: loading?[]:Tasks.find({checked: {$ne: true}}).count(),
     currentUser: Meteor.user(),
   };
 })(App);

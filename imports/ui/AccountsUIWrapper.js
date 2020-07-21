@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import { Template } from 'meteor/templating';
 import { Blaze } from 'meteor/blaze';
 //import SignIn from'./AccountsUIWrapperLogin.js'
-import Login from'./AccountsUIWrapperLogin.js'
+
 
 export default class AccountsUIWrapper extends Component {
   componentDidMount() {
@@ -15,7 +15,6 @@ export default class AccountsUIWrapper extends Component {
   }
   componentWillUnmount() {
     // Clean up Blaze view
-   // ReactDOM.unmountComponentAtNode(ReactDOM.findDOMNode(this.refs.container));
      Blaze.remove(this.view);
   }
   render() {
