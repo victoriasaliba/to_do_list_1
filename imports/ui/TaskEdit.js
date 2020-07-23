@@ -12,6 +12,11 @@ import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControl from '@material-ui/core/FormControl';
 import FormLabel from '@material-ui/core/FormLabel';
+import InputLabel from '@material-ui/core/InputLabel';
+import MenuItem from '@material-ui/core/MenuItem';
+import FormHelperText from '@material-ui/core/FormHelperText';
+import Select from '@material-ui/core/Select';
+
 
 
 class EditTask extends Component {
@@ -60,8 +65,7 @@ class EditTask extends Component {
     handleChangeUser= (evt) =>{
       this.setState({user:evt.target.value});
     }
-   
-
+    
     save = () => {
       Meteor.call('tasks.update', {_id:this.props.task._id, text:this.state.text, description:this.state.description, situation:this.state.situation, data:this.state.data, user:this.state.user}, (e)=>{
         if(!e){
@@ -71,11 +75,17 @@ class EditTask extends Component {
         }
       })
     }
-  
+ 
 
   render() {
-   //const {text} = this.state;
+  
+ 
+    
     return (
+
+
+
+
       <div className="container">
         <header>
             <Typography variant="h5" >
@@ -87,17 +97,38 @@ class EditTask extends Component {
             <input type={'text'} id={'text'} value={this.state.text} onChange={this.handleChangeText}/></p>
             <label>{'Texto:'}</label><p>
             <input type={'text'} id={'description'} value={this.state.description} onChange={this.handleChangeDescription}/></p>
-            <label>{'Situação:'}</label><p>
-            <input type={'text'} id={'situation'} value={this.state.situation} onChange={this.handleChange}/></p>
             <label>{'Data:'}</label><p>
             <input type={'text'} id={'data'} value={this.state.data} onChange={this.handleChangeData}/></p>
             <label>{'Usuário:'}</label><p>
             <input type={'text'} id={'user'} value={this.state.user} onChange={this.handleChangeUser}/></p>
+            
+          <ListItem key="stateUpdate" text="true">
+            <ButtonGroup variant="contained"  aria-label="contained primary button group">
+              <Button
+                value="Cadastrada"
+                variant="contained"
+                onClick={this.handleChangeSituation}
+              > Cadastrada </Button>
+            {this.state.situation === "Cadastrada" ?
+              <Button
+                value="Em Andamento"
+                variant="contained"
+                onClick={this.handleChangeSituation}
+              > Em Andamento </Button>
+              : ""}
+              {this.state.situation === "Em Andamento" ?
+              <Button
+                value="Concluída"
+                variant="contained"
+                onClick={this.handleChangeSituation}
+              > Concluída </Button>
+            : ""}
+            </ButtonGroup>
+            </ListItem>
+
           </div>
            <div>
              <Button onClick={()=>this.props.history.push('/home')}>{'Voltar'}</Button>
-           </div>
-           <div>
              <Button onClick={this.save}>{'Salvar'}</Button>
            </div>
 
@@ -107,103 +138,15 @@ class EditTask extends Component {
   }
 }
 
-class EditTaskComponent extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      text:undefined,
-    }
-  }
-
-  static getDerivedStateFromProps(props, state) {
-    if(!state.text) {
-      return {
-        text:props.task.text,
-      }
-    } else {
-      return {}
-    }
-
-  }
-
-  handleChange = (evt) => {
-    this.setState({text:evt.target.value});
-  }
-
-  save = () => {
-    Meteor.call('tasks.update',{_id:this.props.task._id,text:this.state.text},(e,r)=>{
-      if(!e) {
-        console.log('Salvo com sucesso',r);
-      } else {
-        console.log('Erro:',e);
-      }
-    })
-  }
-
-  render() {
-    const {text} = this.state;
-
-    return(
-        <div style={{width:'100%',display:'flex',flexDirection:'column'}}>
-          <div style={{width:'100%'}}>
-            <label>{'Texto:'}</label>
-            <input type={'text'} id={'text'} value={text} onChange={this.handleChange} />
-          </div>
-          <div style={{width:'100%'}}>
-            <button onClick={()=>this.props.history.push('/home')}>{'Voltar'}</button>
-          </div>
-          <div style={{width:'100%'}}>
-            <button onClick={this.save}>{'Salvar'}</button>
-          </div>
-          {JSON.stringify(this.props.task)}
-        </div>
-    )
-  }
-
-
-}
-
-const EditTaskFunction = (props) => {
-
-  const [text,setText] = React.useState(props.task.text)
-
-  React.useEffect(()=>{
-    if(!text) {
-      setText(props.task.text);
-    }
-  })
-
-  const handleChange = (evt) => {
-    setText(evt.target.value)
-  }
-
-  return (<div style={{width:'100%',display:'flex',flexDirection:'column'}}>
-    <div style={{width:'100%'}}>
-      <label>{'Texto:'}</label>
-      <input type={'text'} id={'text'} value={text} onChange={handleChange} />
-    </div>
-    <div style={{width:'100%'}}>
-
-    </div>
-    {JSON.stringify(props.task)}
-  </div>);
-}
-
 
 export default withTracker((props) => {
-<<<<<<< HEAD
   console.log('props.match.params', props.match.params);
   const id = props.match.params.task
   const handleTask = Meteor.subscribe('tasks', {_id:id});
-=======
-  console.log('props.match.params',props.match.params);
-  const id = props.match.params.task
-  const handleTask = Meteor.subscribe('tasks',{_id:id});
->>>>>>> 74ca6e4d23da2fc7abc8ea20c9de24cd096f2f94
 
   return {
     task: handleTask.ready()?Tasks.findOne({_id:id}):{},
     currentUser: Meteor.user(),
   };
-})(EditTaskComponent);
+})(EditTask);
  

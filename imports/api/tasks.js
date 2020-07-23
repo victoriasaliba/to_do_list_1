@@ -80,57 +80,16 @@ Meteor.methods({
     Tasks.update(taskId, { $set: {private: setToPrivate}});
   },
 
-<<<<<<< HEAD
     'tasks.update'(taskObj) {
   
       check(taskObj, Object);
       
-=======
-///////////////////
-'tasks.setModeEdition'(taskId, setToModeEdition) {
-    check(taskId, String);
-    check(setToModeEdition, Boolean);
-  
-    const task = Tasks.findOne(taskId);
-  
-    // Make sure only the task owner can make a task private
-    if (task.owner !== this.userId) {
-      throw new Meteor.Error('not-authorized');
-    }
-  
-    Tasks.update(taskId, { $set: { modeedition: setToModeEdition } });
-    },
-
-    'tasks.updateState'(taskId, stateT) {
-      check(taskId, String);
-      check(stateT, String);
-  
-      const task = Tasks.findOne(taskId);
-  
-      Tasks.update(taskId, { $set: { state: stateT } });
-  
-    },
-
-    'tasks.update'(taskObj) {
-
-        check(taskObj,Object);
-      // check(taskId, String);
-      // check(name, String);
-      // check(description, String);
-      // check(stateT, String);
-      // check(date, String);
-  
->>>>>>> 74ca6e4d23da2fc7abc8ea20c9de24cd096f2f94
       const task = Tasks.findOne({_id:taskObj._id});
   
-      if (!task||task.owner !== this.userId) {
+      if (task.owner !== this.userId) {
         throw new Meteor.Error('not-authorized');
       }
-<<<<<<< HEAD
       
-=======
-  
->>>>>>> 74ca6e4d23da2fc7abc8ea20c9de24cd096f2f94
       return Tasks.update({_id:taskObj._id}, { $set: taskObj});
   
     },

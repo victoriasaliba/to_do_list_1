@@ -10,23 +10,21 @@ import { Typography, FormControlLabel, IconButton, EditIcon, ListItem, ButtonGro
 import Button from '@material-ui/core/Button';
 import Icon from '@material-ui/core/Icon';
 import Users from '../api/users.js'
-
-
+import FileBase64 from 'react-file-base64';
 
 class UserInfo extends Component {
   constructor(props){
     super(props);
 
     this.state ={
-      user:undefined,
+      name:this.props.currentUser,
     }
   }
     
     static getDerivedStateFromProps(props, state){
-      if(!state.user){
+      if(!state.currentUser){
         return {
-        
-          user:props.currentUser,
+          name:props.currentUser,
         }
       } else {
         return {}
@@ -34,12 +32,44 @@ class UserInfo extends Component {
     }
    
 
-    handleChangeUser= (evt) =>{
-      this.setState({user:evt.target.value});
+    handleName(event) {
+      this.setState({
+          name: event.target.value
+        });
     }
-////////////////////////////////////////////////EDITAR TASKS.UPDATE PARA USERS.IPDATE
+  
+    handleEmail(event) {
+      this.setState({
+          email: event.target.value
+        });
+    }
+  
+    handleGender(event) {
+      this.setState({
+          gender: event.target.value
+        });
+    }
+  
+    handleBirthday(event) {
+      this.setState({
+          birthday: event.target.value
+        });
+    }
+  
+    handleCompany(event) {
+      this.setState({
+          company: event.target.value
+        });
+    }
+  
+    handlePhoto(files) {
+     this.setState({
+         photo: files
+       });
+    }
+
     save = () => {
-      Meteor.call('tasks.update', { user:this.state.user}, (e)=>{
+      Meteor.call('users.update', { name:this.state.name}, (e)=>{
         if(!e){
           console.log('Salvo com sucesso');
         } else {
@@ -60,13 +90,13 @@ class UserInfo extends Component {
         </header> 
         <div>  
             <label>{'Nome:'}</label><p>
-            <input type={'text'} id={'user'} value={this.state.user} onChange={this.handleChangeText}/></p>
+            <input type={'text'} id={'name'} value={this.state.name} onChange={this.handleName}/></p>
             <label>{'Email:'}</label><p>
-            <input type={'text'} id={'description'} value={this.state.description} onChange={this.handleChangeDescription}/></p>
+            <input type={'text'} id={'description'} value={this.state.description} onChange={this.handleChangeUser}/></p>
             <label>{'Data de nascimento:'}</label><p>
-            <input type={'text'} id={'situation'} value={this.state.situation} onChange={this.handleChangeSituation}/></p>
+            <input type={'text'} id={'situation'} value={this.state.situation} onChange={this.handleChangeUser}/></p>
             <label>{'Sexo:'}</label><p>
-            <input type={'text'} id={'data'} value={this.state.data} onChange={this.handleChangeData}/></p>
+            <input type={'text'} id={'data'} value={this.state.data} onChange={this.handleChangeUser}/></p>
             <label>{'Empresa:'}</label><p>
             <input type={'text'} id={'user'} value={this.state.user} onChange={this.handleChangeUser}/></p>
             <label>{'Foto:'}</label><p>
@@ -89,7 +119,7 @@ export default withTracker((props) => {
   const handleUsers = Meteor.subscribe('users', {_id:id});
 
   return {
-    Users: handleUsers.ready()?Users.findOne({_id:id}):{},
+   Users: handleUsers.ready()?Users.findOne({_id:id}):{},
     currentUser: Meteor.user(),
   };
 /*

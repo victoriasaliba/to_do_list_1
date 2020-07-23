@@ -2,7 +2,7 @@ import { Meteor } from 'meteor/meteor';
 import {Mongo} from 'meteor/mongo';
 import {check} from 'meteor/check';
 import { isLoggedIn } from '../ui/AccountsUIWrapperLogin';
-
+import FileBase64 from 'react-file-base64';
 
 export const Users = Meteor.users;
 
@@ -35,13 +35,12 @@ Meteor.methods({
         const userID = Accounts.createUser({
             email: email,
             password: password,
-            profile:{
-                name: name,
-                birthday: birthday,
-                gender: gender,
-                company: company,
-                photo: photo[0].base64,
-            }
+            name: name,
+            birthday: birthday,
+            gender: gender,
+            company: company,
+            photo: photo[0].base64,
+            
         });
 
        
