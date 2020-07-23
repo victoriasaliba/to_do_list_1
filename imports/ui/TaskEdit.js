@@ -1,4 +1,5 @@
 
+
 import React, { Component } from 'react';
 import { Tasks } from '../api/tasks.js';
 import Task from './Task.js';
@@ -149,4 +150,8 @@ export default withTracker((props) => {
     currentUser: Meteor.user(),
   };
 })(EditTask);
+<<<<<<< HEAD
  
+=======
+ 
+>>>>>>> 114f91cf0ba6817aa4b37121d330b87bfbb426d6
