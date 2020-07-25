@@ -1,12 +1,11 @@
 
-
 import React, { Component } from 'react';
 import { Tasks } from '../api/tasks.js';
 import Task from './Task.js';
 import {Meteor} from 'meteor/meteor';
 import { withTracker } from 'meteor/react-meteor-data';
 import ReactDOM, { render } from 'react-dom';
-import { Typography, FormControlLabel, IconButton, EditIcon, ListItem, ButtonGroup } from '@material-ui/core';
+import { Typography, FormControlLabel, IconButton, EditIcon, ListItem, ButtonGroup, NativeSelect } from '@material-ui/core';
 import Button from '@material-ui/core/Button';
 import Icon from '@material-ui/core/Icon';
 import Radio from '@material-ui/core/Radio';
@@ -19,7 +18,6 @@ import FormHelperText from '@material-ui/core/FormHelperText';
 import Select from '@material-ui/core/Select';
 
 
-
 class EditTask extends Component {
   constructor(props){
     super(props);
@@ -27,14 +25,14 @@ class EditTask extends Component {
     this.state ={
       text:undefined,
       description:undefined,
-      situation:undefined,
+      situation: "Cadastrada",
       data:undefined,
       user:undefined,
     }
   }
     
     static getDerivedStateFromProps(props, state){
-      if(!state.text||!state.description||!state.situation||!state.data||!state.user){
+      if(!state.text){
         return {
           text:props.task.text,
           description:props.task.description,
@@ -84,9 +82,6 @@ class EditTask extends Component {
     
     return (
 
-
-
-
       <div className="container">
         <header>
             <Typography variant="h5" >
@@ -102,30 +97,23 @@ class EditTask extends Component {
             <input type={'text'} id={'data'} value={this.state.data} onChange={this.handleChangeData}/></p>
             <label>{'Usuário:'}</label><p>
             <input type={'text'} id={'user'} value={this.state.user} onChange={this.handleChangeUser}/></p>
-            
-          <ListItem key="stateUpdate" text="true">
-            <ButtonGroup variant="contained"  aria-label="contained primary button group">
-              <Button
-                value="Cadastrada"
-                variant="contained"
-                onClick={this.handleChangeSituation}
-              > Cadastrada </Button>
-            {this.state.situation === "Cadastrada" ?
-              <Button
-                value="Em Andamento"
-                variant="contained"
-                onClick={this.handleChangeSituation}
-              > Em Andamento </Button>
-              : ""}
-              {this.state.situation === "Em Andamento" ?
-              <Button
-                value="Concluída"
-                variant="contained"
-                onClick={this.handleChangeSituation}
-              > Concluída </Button>
-            : ""}
-            </ButtonGroup>
-            </ListItem>
+            <label>{'Situação:'}</label><p>
+            <input type={'text'} id={'situation'} value={this.state.situation} onChange={this.handleChangeSituation}/></p>
+          
+            <FormControl >
+              <InputLabel htmlFor="name-native-disabled">Situação</InputLabel>
+              <NativeSelect
+                value={this.state.situation}
+                onChange={this.handleChangeSituation}
+                inputProps={{
+                  situation: 'situation',
+                }}
+              >
+                  <option value="Cadastrada">Cadastrada</option>
+                  <option value="Em Andamento">Em Andamento</option>
+                  <option value="Concluída">Concluída</option>
+              </NativeSelect>
+            </FormControl>
 
           </div>
            <div>
@@ -150,8 +138,4 @@ export default withTracker((props) => {
     currentUser: Meteor.user(),
   };
 })(EditTask);
-<<<<<<< HEAD
  
-=======
- 
->>>>>>> 114f91cf0ba6817aa4b37121d330b87bfbb426d6

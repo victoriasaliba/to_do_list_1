@@ -31,8 +31,6 @@ body {
 }
  
 header {
-  background: #d2edf4;
-  background-image: linear-gradient(to bottom, #d0edf5, #e1e5f0 100%);
   padding: 20px 15px 15px 15px;
   position: relative;
 }
@@ -40,7 +38,49 @@ header {
 #login-buttons {
   display: block;
 }
- 
+.container .card1{
+  width: 50%;
+  max-width: 300px;
+  min-height: 100%;
+  float: left;
+  padding: 20px 15px 15px 15px;
+  margin-bottom: 30px;
+}
+.container .card2{
+  width: 50%;
+  max-width: 300px;
+  min-height: 100%;
+  float: right;
+  padding: 20px 15px 15px 15px;
+  margin-bottom: 30px;
+}
+.container .card3{
+  width: 50%;
+  max-width: 300px;
+  min-height: 100%;
+  float: left;
+  padding: 20px 15px 15px 15px;
+  margin-bottom: 30px;
+}
+.container .card4{
+  width: 50%;
+  max-width: 300px;
+  min-height: 100%;
+  float: right;
+  padding: 20px 15px 15px 15px;
+  margin-bottom: 30px;
+  color: #696969;
+}
+.container .return{
+  width: 50%;
+  max-width: 300px;
+  min-height: 100%;
+  float: middle;
+  padding: 20px 15px 15px 15px;
+  margin-bottom: 30px;
+
+}
+
 h1 {
   font-size: 1.5em;
   margin: 0;
