@@ -6,7 +6,7 @@ import Task from './Task.js';
 import {Meteor} from 'meteor/meteor';
 import { withTracker } from 'meteor/react-meteor-data';
 import ReactDOM, { render } from 'react-dom';
-import { Typography, FormControlLabel, IconButton, EditIcon, ListItem, ButtonGroup } from '@material-ui/core';
+import { Typography, FormControlLabel, IconButton, EditIcon, ListItem, ButtonGroup, FormControl, InputLabel, NativeSelect } from '@material-ui/core';
 import Button from '@material-ui/core/Button';
 import Icon from '@material-ui/core/Icon';
 import Users from '../api/users.js'
@@ -17,20 +17,30 @@ class UserInfo extends Component {
     super(props);
 
     this.state ={
-      name:this.props.currentUser,
+      name:undefined,
+      email:undefined,
+      birthday:undefined,
+      gender:undefined,
+      company:undefined,
+      photo:undefined,
     }
   }
     
     static getDerivedStateFromProps(props, state){
-      if(!state.currentUser){
+      if(!state.name){
         return {
-          name:props.currentUser,
+          name:props.user.name,
+          email:props.user.email,
+          birthday:props.user.birthday,
+          gender:props.user.gender,
+          company:props.user.company,
+          photo:props.user.photo,
         }
       } else {
         return {}
       }
     }
-   
+  
 
     handleName(event) {
       this.setState({
@@ -69,7 +79,7 @@ class UserInfo extends Component {
     }
 
     save = () => {
-      Meteor.call('users.update', { name:this.state.name}, (e)=>{
+      Meteor.call('users.update', { name:this.state.name, email:this.state.email, gender:this.state.email, birthday:this.state.birthday, company:this.state.company, photo:this.state.photo}, (e)=>{
         if(!e){
           console.log('Salvo com sucesso');
         } else {
@@ -90,17 +100,31 @@ class UserInfo extends Component {
         </header> 
         <div>  
             <label>{'Nome:'}</label><p>
-            <input type={'text'} id={'name'} value={this.state.name} onChange={this.handleName}/></p>
+            <input type={'text'} id={'name'} value={this.state.name} onChange={this.handleName.bind(this)}/></p>
             <label>{'Email:'}</label><p>
-            <input type={'text'} id={'description'} value={this.state.description} onChange={this.handleChangeUser}/></p>
+            <input type={'text'} id={'email'} value={this.state.email} onChange={this.handleEmail}/></p>
             <label>{'Data de nascimento:'}</label><p>
-            <input type={'text'} id={'situation'} value={this.state.situation} onChange={this.handleChangeUser}/></p>
-            <label>{'Sexo:'}</label><p>
-            <input type={'text'} id={'data'} value={this.state.data} onChange={this.handleChangeUser}/></p>
+            <input type={'text'} id={'birthday'} value={this.state.birthday} onChange={this.handleBirthday}/></p>
+            <label>{'Gênero:'}</label><p>           
+             <FormControl >
+              <NativeSelect
+                value={this.state.gender}
+                onChange={this.handleGender}
+                inputProps={{
+                  gender: 'gender',
+                }}
+              >
+                  <option >Gênero</option>
+                  <option value="Feminino">Feminino</option>
+                  <option value="Masculino">Masculino</option> 
+              </NativeSelect>
+            </FormControl></p>
+            <label>{'Gênero:'}</label><p>
+            <input type={'text'} id={'gender'} value={this.state.gender} onChange={this.handleGender}/></p>
             <label>{'Empresa:'}</label><p>
-            <input type={'text'} id={'user'} value={this.state.user} onChange={this.handleChangeUser}/></p>
+            <input type={'text'} id={'company'} value={this.state.company} onChange={this.handleCompany}/></p>
             <label>{'Foto:'}</label><p>
-            <input type={'text'} id={'user'} value={this.state.user} onChange={this.handleChangeUser}/></p>
+            <input type={'file'} id={'photo'} value={this.state.photo} onChange={this.handlePhoto}/></p>
           </div>
            <div>
              <Button onClick={this.save}>{'Salvar'}</Button>
@@ -114,20 +138,15 @@ class UserInfo extends Component {
 
 
 export default withTracker((props) => {
-  console.log('props.match.params', props.match.params);
-  const id = props.match.params.users
-  const handleUsers = Meteor.subscribe('users', {_id:id});
-
+  console.log(Meteor.userId());
+ // console.log('props.match.params', props.match.params);
+  //const userId = props.match.params.users
+  const userId = Meteor.userId(); 
+  const handleUsers = Meteor.subscribe('users', {_id:userId});
+  console.log(this.userId);
   return {
-   Users: handleUsers.ready()?Users.findOne({_id:id}):{},
-    currentUser: Meteor.user(),
-  };
-/*
-  return {
-    users: Users.find({}).fetch(),
-    incompleteCount: Users.find({ checked: { $ne: true } }).count(),
+    user: handleUsers.ready()?Users.findOne({_id:userId}):{},
     currentUser: Meteor.user(),
   };
 
-  */
 })(UserInfo);

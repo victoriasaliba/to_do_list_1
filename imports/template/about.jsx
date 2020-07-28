@@ -28,7 +28,7 @@ import { makeStyles } from '@material-ui/core/styles';
                       Tarefas Cadastradas
                     </Typography>
                     <Typography variant="h5" component="h2">
-                    { this.props.registeredState }
+                    { this.props.registeredTask }
                     </Typography>
                   </CardContent>
                 </Card>
@@ -39,7 +39,7 @@ import { makeStyles } from '@material-ui/core/styles';
                       Tarefas em Andamento
                     </Typography>
                     <Typography variant="h5" component="h2">
-                    { this.props.inprogressState }
+                    { this.props.inprogressTask }
                     </Typography>
                     </CardContent>
                 </Card>
@@ -50,25 +50,18 @@ import { makeStyles } from '@material-ui/core/styles';
                       Tarefas Concluídas
                     </Typography>
                     <Typography variant="h5" component="h2">
-                    { this.props.completeCount }
+                    { this.props.completedTask }
                     </Typography>
                   </CardContent>
                 </Card>
 
                 <Card className="card4" variant="outlined">
-                  <CardContent>
-                    <Typography className="" color="textSecondary" gutterBottom>
-                      Tarefas Incompletas
-                    </Typography>
-                    <Typography variant="h5" component="h2">
-                    { this.props.incompleteCount }
-                    </Typography>
-                  </CardContent>
+                  <CardContent >
+                    <Button onClick={()=>this.props.history.push('/home')}>{'Visualizar Tarefas'}</Button>
+                </CardContent>
                 </Card>
 
-                <CardActions className="return">
-                    <Button onClick={()=>this.props.history.push('/home')}>{'Lista completa'}</Button>
-                </CardActions>
+        
                </div>
              
            </div>
@@ -83,11 +76,9 @@ export default withTracker(() => {
 
   return {
     tasks: Tasks.find({}, { sort: { createdAt: -1 } }).fetch(),
-    incompleteCount: Tasks.find({ checked: { $ne: true } }).count(),
-    completeCount: Tasks.find({ checked: { $ne: false } }).count(),
-    registeredState: Tasks.find({ state: "Cadastrada" }).count(),
-    inprogressState: Tasks.find({ state: "Em Andamento" }).count(),
-    completedState: Tasks.find({ state: "Concluída" }).count(),
+    registeredTask: Tasks.find({ situation: "Cadastrada" }).count(),
+    inprogressTask: Tasks.find({ situation: "Em Andamento" }).count(),
+    completedTask: Tasks.find({ situation: "Concluída" }).count(),
     currentUser: Meteor.user(),
   };
 })(withRouter(About));

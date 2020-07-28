@@ -25,7 +25,7 @@ class EditTask extends Component {
     this.state ={
       text:undefined,
       description:undefined,
-      situation: "Cadastrada",
+      situation: undefined,
       data:undefined,
       user:undefined,
     }
@@ -98,10 +98,7 @@ class EditTask extends Component {
             <label>{'Usuário:'}</label><p>
             <input type={'text'} id={'user'} value={this.state.user} onChange={this.handleChangeUser}/></p>
             <label>{'Situação:'}</label><p>
-            <input type={'text'} id={'situation'} value={this.state.situation} onChange={this.handleChangeSituation}/></p>
-          
             <FormControl >
-              <InputLabel htmlFor="name-native-disabled">Situação</InputLabel>
               <NativeSelect
                 value={this.state.situation}
                 onChange={this.handleChangeSituation}
@@ -109,11 +106,14 @@ class EditTask extends Component {
                   situation: 'situation',
                 }}
               >
+                  <option >Situação</option>
                   <option value="Cadastrada">Cadastrada</option>
-                  <option value="Em Andamento">Em Andamento</option>
-                  <option value="Concluída">Concluída</option>
+                  {this.state.situation=== "Cadastrada"?
+                  <option value="Em Andamento">Em Andamento</option> :''}
+                  {this.state.situation=== "Em Andamento"?
+                  <option value="Concluída">Concluída</option> :''}
               </NativeSelect>
-            </FormControl>
+            </FormControl></p>
 
           </div>
            <div>

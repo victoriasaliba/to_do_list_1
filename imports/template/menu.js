@@ -9,7 +9,11 @@ import AccountsUIWrapper from '../ui/AccountsUIWrapper.js';
 import EditTask from '../ui/TaskEdit.js'
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import UserInfo from '../ui/UserInfo.js'
+import { createBrowserHistory } from "history";
 
+
+
+export const history = createBrowserHistory();
 import React, { Fragment } from "react";
 import {
   BrowserRouter as Router,
@@ -41,8 +45,8 @@ export default function SimpleMenu() {
                 <Menu id="simple-menu" anchorEl={anchorEl} keepMounted open={Boolean(anchorEl)} onClose={handleClose}>
                 <nav>
                 <ul>
-
-                <Button><NavLink to="/user" activeStyle={{fontWeight: "bold"}}><MenuItem><AccountCircleIcon/  ></MenuItem></NavLink></Button>
+           
+                <Button><NavLink to="/user" activeStyle={{fontWeight: "bold"}}><MenuItem><AccountCircleIcon/></MenuItem></NavLink></Button>
 
                 <Button><NavLink to="/home"  activeStyle={{fontWeight: "bold"}} ><MenuItem>Home</MenuItem></NavLink></Button>
 
@@ -52,7 +56,7 @@ export default function SimpleMenu() {
                 
                 <Button><NavLink to="/login" activeStyle={{fontWeight: "bold"}}><MenuItem>Login</MenuItem></NavLink></Button>
                
-                <Button><NavLink to="/login2" activeStyle={{fontWeight: "bold"}}><MenuItem>Login2</MenuItem></NavLink></Button>
+               
       
                    
 
@@ -80,7 +84,7 @@ export default function SimpleMenu() {
                    <SignIn/>
                 </Route>
                 <Route path={"/edittask/:task"} component={EditTask}/>
-                <Route path={"/user"} component={UserInfo}/>
+                <Route path={"/user/"} component={UserInfo}/>
                 
                 
         </div>

@@ -1,3 +1,4 @@
+
 import { Meteor } from 'meteor/meteor';
 import {Mongo} from 'meteor/mongo';
 import {check} from 'meteor/check';
@@ -46,20 +47,19 @@ Meteor.methods({
        
     },
     
-    'users.update'(userID) {
+    'users.update'(userObj) {
   
-      check(userID, Object);
+      check(userObj, Object);
       
-      const user = Users.findOne({_id:userID._id});
+      const user = Users.findOne({_id:userObj._id});
   
-      if (Meteor.userID() !== this.userId) {
+      if (Meteor.userId() !== this.userId) {
         throw new Meteor.Error('not-authorized');
       }
       
-      return Users.update({_id:userID._id}, { $set: userID});
+      return Users.update({_id:userObj._id}, { $set: userObj});
   
     },
 
   });
   
-

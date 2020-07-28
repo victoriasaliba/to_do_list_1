@@ -22,9 +22,6 @@ import EditTask from './TaskEdit.js'
 import { createBrowserHistory } from "history";
 
 
-//import { matchPath } from "react-router";
-
-
 
 export const history = createBrowserHistory();
 
