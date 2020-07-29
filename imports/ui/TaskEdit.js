@@ -23,6 +23,7 @@ class EditTask extends Component {
     super(props);
 
     this.state ={
+      init:false,
       text:undefined,
       description:undefined,
       situation: undefined,
@@ -32,8 +33,9 @@ class EditTask extends Component {
   }
     
     static getDerivedStateFromProps(props, state){
-      if(!state.text){
+      if(!state.init){
         return {
+            init:!!props.task._id,
           text:props.task.text,
           description:props.task.description,
           situation:props.task.situation,
