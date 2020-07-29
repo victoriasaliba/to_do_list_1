@@ -24,17 +24,28 @@ class UserInfo extends Component {
       company:undefined,
       photo:undefined,
     }
+
+
+    // this.handleCompany = this.handleCompany.bind(this);
   }
     
     static getDerivedStateFromProps(props, state){
       if(!state.name&&!!props.user){
         return {
           name:props.user.username,
+<<<<<<< HEAD
           email:props.user.profile.email,
           birthday:props.user.profile.birthday,
           gender:props.user.profile.gender,
           company:props.user.profile.company,
           photo:props.user.profile.photo,
+=======
+                email:props.user.profile.email,
+                birthday:props.user.profile.birthday,
+                gender:props.user.profile.gender,
+                company:props.user.profile.company,
+                photo:props.user.profile.photo,
+>>>>>>> 9853f43b85d55722fbd84f74a31b8e823e0bd89a
         }
       } else {
         return {}
@@ -153,7 +164,11 @@ export default withTracker((props) => {
   const userId = Meteor.userId(); 
   const handleUsers = Meteor.subscribe('users', {_id:userId});
   return {
+<<<<<<< HEAD
     user: Meteor.user(),
+=======
+    user: Meteor.user(),//handleUsers.ready()?Users.findOne({_id:userId}):{},
+>>>>>>> 9853f43b85d55722fbd84f74a31b8e823e0bd89a
     currentUser: Meteor.user(),
   };
 

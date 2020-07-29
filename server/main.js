@@ -1,7 +1,11 @@
 import { Meteor } from 'meteor/meteor';
 import { LinksCollection } from '/imports/api/links';
 import '../imports/api/tasks.js';
+<<<<<<< HEAD
 import '../imports/api/users.js'
+=======
+import '../imports/api/users.js';
+>>>>>>> 9853f43b85d55722fbd84f74a31b8e823e0bd89a
 
 function insertLink({ title, url }) {
   LinksCollection.insert({title, url, createdAt: new Date()});

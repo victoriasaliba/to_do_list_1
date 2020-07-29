@@ -33,7 +33,11 @@ class EditTask extends Component {
     static getDerivedStateFromProps(props, state){
       if(!state.init){
         return {
+<<<<<<< HEAD
           init:!!props.task._id,
+=======
+            init:!!props.task._id,
+>>>>>>> 9853f43b85d55722fbd84f74a31b8e823e0bd89a
           text:props.task.text,
           description:props.task.description,
           situation:props.task.situation,
