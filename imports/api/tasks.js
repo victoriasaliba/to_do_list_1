@@ -35,6 +35,7 @@ Meteor.methods({
         }
 
         Tasks.insert({
+            situation: 'Cadastrada',
             text,
             createdAt: new Date(),
             owner: this.userId,

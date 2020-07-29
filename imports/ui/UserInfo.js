@@ -27,14 +27,14 @@ class UserInfo extends Component {
   }
     
     static getDerivedStateFromProps(props, state){
-      if(!state.name){
+      if(!state.name&&!!props.user){
         return {
-          name:props.user.name,
-          email:props.user.email,
-          birthday:props.user.birthday,
-          gender:props.user.gender,
-          company:props.user.company,
-          photo:props.user.photo,
+          name:props.user.username,
+          email:props.user.profile.email,
+          birthday:props.user.profile.birthday,
+          gender:props.user.profile.gender,
+          company:props.user.profile.company,
+          photo:props.user.profile.photo,
         }
       } else {
         return {}
@@ -42,44 +42,53 @@ class UserInfo extends Component {
     }
   
 
-    handleName(event) {
+    handleName = (event) => {
       this.setState({
           name: event.target.value
         });
     }
   
-    handleEmail(event) {
+    handleEmail = (event) => {
       this.setState({
           email: event.target.value
         });
     }
   
-    handleGender(event) {
+    handleGender = (event) => {
       this.setState({
           gender: event.target.value
         });
     }
   
-    handleBirthday(event) {
+    handleBirthday = (event) => {
       this.setState({
           birthday: event.target.value
         });
     }
   
-    handleCompany(event) {
+    handleCompany = (event) => {
       this.setState({
           company: event.target.value
         });
     }
   
-    handlePhoto(files) {
+    handlePhoto = (event) => {
      this.setState({
          photo: files
        });
     }
 
     save = () => {
-      Meteor.call('users.update', { name:this.state.name, email:this.state.email, gender:this.state.email, birthday:this.state.birthday, company:this.state.company, photo:this.state.photo}, (e)=>{
+      console.log('THIS.STATE>>>',this.state)
+      Meteor.call('users.update', { _id:this.props.user._id,username:this.state.name,
+          profile: {
+              email: this.state.email,
+              gender: this.state.gender,
+              birthday: this.state.birthday,
+              company: this.state.company,
+              photo: this.state.photo
+          }
+          }, (e)=>{
         if(!e){
           console.log('Salvo com sucesso');
         } else {
@@ -90,6 +99,8 @@ class UserInfo extends Component {
   
 
   render() {
+
+      console.log('this.props',this.props);
 
     return (
       <div className="container">
@@ -138,14 +149,11 @@ class UserInfo extends Component {
 
 
 export default withTracker((props) => {
-  console.log(Meteor.userId());
- // console.log('props.match.params', props.match.params);
-  //const userId = props.match.params.users
+
   const userId = Meteor.userId(); 
   const handleUsers = Meteor.subscribe('users', {_id:userId});
-  console.log(this.userId);
   return {
-    user: handleUsers.ready()?Users.findOne({_id:userId}):{},
+    user: Meteor.user(),
     currentUser: Meteor.user(),
   };
 

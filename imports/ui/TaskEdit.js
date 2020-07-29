@@ -8,8 +8,6 @@ import ReactDOM, { render } from 'react-dom';
 import { Typography, FormControlLabel, IconButton, EditIcon, ListItem, ButtonGroup, NativeSelect } from '@material-ui/core';
 import Button from '@material-ui/core/Button';
 import Icon from '@material-ui/core/Icon';
-import Radio from '@material-ui/core/Radio';
-import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControl from '@material-ui/core/FormControl';
 import FormLabel from '@material-ui/core/FormLabel';
 import InputLabel from '@material-ui/core/InputLabel';
@@ -23,6 +21,7 @@ class EditTask extends Component {
     super(props);
 
     this.state ={
+      init:false,
       text:undefined,
       description:undefined,
       situation: undefined,
@@ -32,8 +31,9 @@ class EditTask extends Component {
   }
     
     static getDerivedStateFromProps(props, state){
-      if(!state.text){
+      if(!state.init){
         return {
+          init:!!props.task._id,
           text:props.task.text,
           description:props.task.description,
           situation:props.task.situation,
@@ -106,7 +106,6 @@ class EditTask extends Component {
                   situation: 'situation',
                 }}
               >
-                  <option >Situação</option>
                   <option value="Cadastrada">Cadastrada</option>
                   {this.state.situation=== "Cadastrada"?
                   <option value="Em Andamento">Em Andamento</option> :''}

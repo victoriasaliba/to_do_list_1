@@ -63,12 +63,7 @@ export const history = createBrowserHistory();
           <Avatar>
              <AssignmentIcon />
          </Avatar>
-          <input
-            type="checkbox"
-            readOnly
-            checked={!!this.props.task.checked}
-            onClick={this.toggleChecked.bind(this)}
-            />
+         
         
          {this.props.showPrivateButton ? (
               <button className="toggle-private" onClick={this.togglePrivate.bind(this)}>

@@ -15,7 +15,7 @@ body {
  
   font-size: 14px;
 }
- 
+
 .container {
   max-width: 800px;
   margin: 0 auto;
@@ -28,6 +28,8 @@ body {
   margin: 0 auto;
   min-height: 100%;
   background:white;
+  text-decoration: none;
+  border: none;
 }
  
 header {

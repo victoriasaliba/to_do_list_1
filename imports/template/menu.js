@@ -35,7 +35,6 @@ export default function SimpleMenu() {
     const handleClose = () => {
       setAnchorEl(null);
     };
-  
     return (
         <Router history={history}>
           <div className='menu'>
@@ -45,16 +44,17 @@ export default function SimpleMenu() {
                 <Menu id="simple-menu" anchorEl={anchorEl} keepMounted open={Boolean(anchorEl)} onClose={handleClose}>
                 <nav>
                 <ul>
-           
+                
                 <Button><NavLink to="/user" activeStyle={{fontWeight: "bold"}}><MenuItem><AccountCircleIcon/></MenuItem></NavLink></Button>
 
-                <Button><NavLink to="/home"  activeStyle={{fontWeight: "bold"}} ><MenuItem>Home</MenuItem></NavLink></Button>
-
+                <Button><NavLink to="/home" activeStyle={{fontWeight: "bold"}} ><MenuItem>Home</MenuItem></NavLink></Button>
+              
                 <Button><NavLink to="/about" activeStyle={{fontWeight: "bold"}}><MenuItem>About</MenuItem></NavLink></Button>
-                 
+              
                 <Button><NavLink to="/todo" activeStyle={{fontWeight: "bold"}}><MenuItem>Todo</MenuItem></NavLink></Button>
-                
+              
                 <Button><NavLink to="/login" activeStyle={{fontWeight: "bold"}}><MenuItem>Login</MenuItem></NavLink></Button>
+                <Button><NavLink to="/login2" activeStyle={{fontWeight: "bold"}}><MenuItem>Login2</MenuItem></NavLink></Button>
                
                
       
@@ -84,7 +84,7 @@ export default function SimpleMenu() {
                    <SignIn/>
                 </Route>
                 <Route path={"/edittask/:task"} component={EditTask}/>
-                <Route path={"/user/"} component={UserInfo}/>
+                <Route path={"/user"} component={UserInfo}/>
                 
                 
         </div>

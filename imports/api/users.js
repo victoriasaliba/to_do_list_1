@@ -21,11 +21,13 @@ Meteor.methods({
     'users.insert'(name, password, email, birthday, gender, company, photo){
         check(name, String);
         check(password, String);
-        check(email, String);
-        check(birthday, String);
-        check(gender, String);
-        check(company, String);
-        check(photo[0].base64, String);
+        profile:{
+            check(email, String);
+            check(birthday, String);
+            check(gender, String);
+            check(company, String);
+            check(photo[0].base64, String);
+        }
 
         //make sure the user is logged in
         if(Meteor.isServer){
@@ -33,7 +35,7 @@ Meteor.methods({
         }
 
 
-        const userID = Accounts.createUser({
+        const userId = Accounts.createUser({
             email: email,
             password: password,
             name: name,

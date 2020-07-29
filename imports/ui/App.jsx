@@ -73,17 +73,7 @@ import { isLoggedIn } from '../ui/AccountsUIWrapperLogin';
     return (
       <div className="container">
         <header>
-          <h1>Todo List ({this.props.imcompleteCount})</h1>
-          <label className="hide-completed">
-            <input
-              type="checkbox"
-              readOnly
-              checked={this.state.hideCompleted}
-              onClick={this.toggleHideCompleted.bind(this)}
-              />
-              Ocultar tarefas completadas
-          </label>
-        
+          <h1>Todo List </h1>        
           <AccountsUIWrapper/>
           { this.props.currentUser ?
             <form className="new-task" onSubmit={this.handleSubmit.bind(this)} >
