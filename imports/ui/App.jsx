@@ -6,6 +6,7 @@ import { withTracker } from 'meteor/react-meteor-data';
  
 import { Tasks } from '../api/tasks.js';
 import Task from './Task.js';
+import Typography from '@material-ui/core/Typography';
 
 import AccountsUIWrapper from './AccountsUIWrapper.js';
 import history from "history";
@@ -73,7 +74,9 @@ import { isLoggedIn } from '../ui/AccountsUIWrapperLogin';
     return (
       <div className="container">
         <header>
-          <h1>Todo List </h1>        
+        <Typography variant="h4" component="h2" >
+            Lista de Tarefas   
+        </Typography>      
           <AccountsUIWrapper/>
           { this.props.currentUser ?
             <form className="new-task" onSubmit={this.handleSubmit.bind(this)} >

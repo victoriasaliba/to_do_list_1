@@ -11,6 +11,7 @@ import Button from '@material-ui/core/Button';
 import Icon from '@material-ui/core/Icon';
 import Users from '../api/users.js'
 import FileBase64 from 'react-file-base64';
+import TextField from '@material-ui/core/TextField';
 
 class UserInfo extends Component {
   constructor(props){
@@ -24,28 +25,17 @@ class UserInfo extends Component {
       company:undefined,
       photo:undefined,
     }
-
-
-    // this.handleCompany = this.handleCompany.bind(this);
   }
     
     static getDerivedStateFromProps(props, state){
       if(!state.name&&!!props.user){
         return {
           name:props.user.username,
-<<<<<<< HEAD
           email:props.user.profile.email,
           birthday:props.user.profile.birthday,
           gender:props.user.profile.gender,
           company:props.user.profile.company,
           photo:props.user.profile.photo,
-=======
-                email:props.user.profile.email,
-                birthday:props.user.profile.birthday,
-                gender:props.user.profile.gender,
-                company:props.user.profile.company,
-                photo:props.user.profile.photo,
->>>>>>> 9853f43b85d55722fbd84f74a31b8e823e0bd89a
         }
       } else {
         return {}
@@ -116,18 +106,18 @@ class UserInfo extends Component {
     return (
       <div className="container">
         <header>
-            <Typography variant="h5" >
+            <Typography variant="h4" >
               User Profile
             </Typography>
         </header> 
         <div>  
-            <label>{'Nome:'}</label><p>
-            <input type={'text'} id={'name'} value={this.state.name} onChange={this.handleName.bind(this)}/></p>
-            <label>{'Email:'}</label><p>
-            <input type={'text'} id={'email'} value={this.state.email} onChange={this.handleEmail}/></p>
-            <label>{'Data de nascimento:'}</label><p>
-            <input type={'text'} id={'birthday'} value={this.state.birthday} onChange={this.handleBirthday}/></p>
-            <label>{'Gênero:'}</label><p>           
+            <Typography variant="h6">{'Nome:'}</Typography><p>
+            <TextField  type={'text'} id={'name'} value={this.state.name} onChange={this.handleName.bind(this)}/></p>
+            <Typography variant="h6">{'Email:'}</Typography><p>
+            <TextField  type={'text'} id={'email'} value={this.state.email} onChange={this.handleEmail}/></p>
+            <Typography variant="h6">{'Data de Nascimento:'}</Typography><p>
+            <TextField  type={'text'} id={'birthday'} value={this.state.birthday} onChange={this.handleBirthday}/></p>
+            <Typography variant="h6">{'Gênero:'}</Typography><p>          
              <FormControl >
               <NativeSelect
                 value={this.state.gender}
@@ -141,12 +131,10 @@ class UserInfo extends Component {
                   <option value="Masculino">Masculino</option> 
               </NativeSelect>
             </FormControl></p>
-            <label>{'Gênero:'}</label><p>
-            <input type={'text'} id={'gender'} value={this.state.gender} onChange={this.handleGender}/></p>
-            <label>{'Empresa:'}</label><p>
-            <input type={'text'} id={'company'} value={this.state.company} onChange={this.handleCompany}/></p>
-            <label>{'Foto:'}</label><p>
-            <input type={'file'} id={'photo'} value={this.state.photo} onChange={this.handlePhoto}/></p>
+            <Typography variant="h6">{'Empresa:'}</Typography><p>
+            <TextField  type={'text'} id={'company'} value={this.state.company} onChange={this.handleCompany}/></p>
+            <Typography variant="h6">{'Foto:'}</Typography><p>
+            <TextField  type={'file'} id={'photo'} value={this.state.photo} onChange={this.handlePhoto}/></p>
           </div>
            <div>
              <Button onClick={this.save}>{'Salvar'}</Button>
@@ -164,11 +152,7 @@ export default withTracker((props) => {
   const userId = Meteor.userId(); 
   const handleUsers = Meteor.subscribe('users', {_id:userId});
   return {
-<<<<<<< HEAD
     user: Meteor.user(),
-=======
-    user: Meteor.user(),//handleUsers.ready()?Users.findOne({_id:userId}):{},
->>>>>>> 9853f43b85d55722fbd84f74a31b8e823e0bd89a
     currentUser: Meteor.user(),
   };
 

@@ -10,7 +10,7 @@ import EditTask from '../ui/TaskEdit.js'
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import UserInfo from '../ui/UserInfo.js'
 import { createBrowserHistory } from "history";
-
+import Welcome from '../ui/welcome.js'
 
 
 export const history = createBrowserHistory();
@@ -22,6 +22,7 @@ import {
   Link,
   NavLink
 } from "react-router-dom";
+import AccountsUIWrapperLogin from '../ui/AccountsUIWrapperLogin.js';
 
 
 
@@ -54,7 +55,6 @@ export default function SimpleMenu() {
                 <Button><NavLink to="/todo" activeStyle={{fontWeight: "bold"}}><MenuItem>Todo</MenuItem></NavLink></Button>
               
                 <Button><NavLink to="/login" activeStyle={{fontWeight: "bold"}}><MenuItem>Login</MenuItem></NavLink></Button>
-                <Button><NavLink to="/login2" activeStyle={{fontWeight: "bold"}}><MenuItem>Login2</MenuItem></NavLink></Button>
                
                
       
@@ -68,23 +68,13 @@ export default function SimpleMenu() {
                 {/* A <Switch> looks through its children <Route>s and
                     renders the first one that matches the current URL. */}
                 
-                <Route path="/home" component={App}>
-                    <App/>
-                </Route>
-                <Route path="/about" component={About}>
-                    <About />
-                </Route>
-                <Route path="/todo" component={Todo}>
-                    <Todo/>
-                </Route>
-                <Route path="/login" component={AccountsUIWrapper}>
-                   <AccountsUIWrapper/>
-                </Route>
-                <Route path="/login2" component={SignIn}>
-                   <SignIn/>
-                </Route>
+                <Route path="/home" component={App}/>
+                <Route path="/about" component={About}/>
+                <Route path="/todo" component={Todo}/>
+                <Route path="/login" component={AccountsUIWrapperLogin}/>
                 <Route path={"/edittask/:task"} component={EditTask}/>
                 <Route path={"/user"} component={UserInfo}/>
+                <Route exact path={"/"} component={Welcome}/>
                 
                 
         </div>

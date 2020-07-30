@@ -20,7 +20,11 @@ import { makeStyles } from '@material-ui/core/styles';
 
         return(
            <div className="container">
-             <h1>Bem vindo(a)!</h1>
+             <header>
+              <Typography variant="h4" component="h2" >
+                    Seja bem vindo(a)!    
+              </Typography>
+             </header>      
                <div>
                <Card className="card1" variant="outlined" allign="true">
                   <CardContent>

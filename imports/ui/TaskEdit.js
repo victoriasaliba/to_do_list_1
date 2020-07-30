@@ -14,6 +14,7 @@ import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormHelperText from '@material-ui/core/FormHelperText';
 import Select from '@material-ui/core/Select';
+import TextField from '@material-ui/core/TextField';
 
 
 class EditTask extends Component {
@@ -33,11 +34,7 @@ class EditTask extends Component {
     static getDerivedStateFromProps(props, state){
       if(!state.init){
         return {
-<<<<<<< HEAD
           init:!!props.task._id,
-=======
-            init:!!props.task._id,
->>>>>>> 9853f43b85d55722fbd84f74a31b8e823e0bd89a
           text:props.task.text,
           description:props.task.description,
           situation:props.task.situation,
@@ -93,15 +90,15 @@ class EditTask extends Component {
             </Typography>
         </header> 
          <div>  
-            <label>{'Nome:'}</label><p>
-            <input type={'text'} id={'text'} value={this.state.text} onChange={this.handleChangeText}/></p>
-            <label>{'Texto:'}</label><p>
-            <input type={'text'} id={'description'} value={this.state.description} onChange={this.handleChangeDescription}/></p>
-            <label>{'Data:'}</label><p>
-            <input type={'text'} id={'data'} value={this.state.data} onChange={this.handleChangeData}/></p>
-            <label>{'Usuário:'}</label><p>
-            <input type={'text'} id={'user'} value={this.state.user} onChange={this.handleChangeUser}/></p>
-            <label>{'Situação:'}</label><p>
+            <Typography variant="h6">{'Nome da tarefa:'}</Typography><p>
+            <TextField type={'text'} id={'text'} value={this.state.text} onChange={this.handleChangeText}/></p>
+            <Typography variant="h6">{'Descrição:'}</Typography><p>
+            <TextField type={'text'} id={'description'} value={this.state.description} onChange={this.handleChangeDescription}/></p>
+            <Typography variant="h6">{'Data:'}</Typography><p>
+            <TextField type={'text'} id={'data'} value={this.state.data} onChange={this.handleChangeData}/></p>
+            <Typography variant="h6">{'Usuário:'}</Typography><p>
+            <TextField type={'text'} id={'user'} value={this.state.user} onChange={this.handleChangeUser}/></p>
+            <Typography variant="h6">{'Situação:'}</Typography><p>
             <FormControl >
               <NativeSelect
                 value={this.state.situation}
