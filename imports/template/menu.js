@@ -86,7 +86,7 @@ export default function SimpleMenu() {
                 <ListItemIcon>
                  
                 </ListItemIcon>
-                <ListItemText primary={"Login"} />
+                <ListItemText primary={"Log"} />
               </ListItem>
             </Link>
           </List>

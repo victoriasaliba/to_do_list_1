@@ -1,23 +1,13 @@
 import React, { Component } from 'react';
 import { Meteor } from 'meteor/meteor';
-import { makeStyles, withStyles } from '@material-ui/core/styles';
+import { withStyles } from '@material-ui/core/styles';
 
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
-import Drawer from '@material-ui/core/Drawer';
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemText from '@material-ui/core/ListItemText';
-import IconButton from '@material-ui/core/IconButton';
-import MenuIcon from '@material-ui/icons/Menu';
-import Icon from '@material-ui/core/Icon';
-import TextField from '@material-ui/core/TextField';
 
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
 
-const styles = theme => ({
+const styles = () => ({
   container: {
     flex: 1,
     justifyContent: 'center',
@@ -41,7 +31,7 @@ class Logout extends Component {
 
   logout() {
       Meteor.logout();
-      this.props.history.push('/userlog');
+      this.props.history.push('/about');
   }
   
   render() {
@@ -51,9 +41,6 @@ class Logout extends Component {
       <Grid container style={styles.container}>
          <header>
           <div>
-              <Typography variant="h6" gutterBottom>
-                Você já está logado.
-              </Typography>
               <Button
                 style={styles.button}
                 label="Log Out"

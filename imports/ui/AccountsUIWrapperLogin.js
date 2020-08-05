@@ -1,17 +1,8 @@
 import React, { Component } from 'react';
 import { Meteor } from 'meteor/meteor';
-import { makeStyles, withStyles } from '@material-ui/core/styles';
+import { withStyles } from '@material-ui/core/styles';
 
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
-import Drawer from '@material-ui/core/Drawer';
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemText from '@material-ui/core/ListItemText';
-import IconButton from '@material-ui/core/IconButton';
-import MenuIcon from '@material-ui/icons/Menu';
-import Icon from '@material-ui/core/Icon';
 import TextField from '@material-ui/core/TextField';
 
 import Button from '@material-ui/core/Button';
@@ -19,14 +10,13 @@ import Grid from '@material-ui/core/Grid';
 //import { createBrowserHistory } from "history";
 //export const history = createBrowserHistory();
 
-import { Router, Switch, Route, Link, withRouter } from 'react-router-dom'
 
 
 export const isLoggedIn = () => {
   return Boolean(Meteor.userId());
 };
 
-const styles = theme => ({
+const styles = () => ({
   container: {
     flex: 1,
     justifyContent: 'center',
@@ -137,7 +127,7 @@ class Login extends Component {
 
   render() {
     return (
-      <Router history={this.props.history}>
+     
       <div className="container">
         <header>
           <div>
@@ -189,7 +179,7 @@ class Login extends Component {
           </Grid>
       </div>
     </div>
-    </Router>
+    
     );
   }
 }

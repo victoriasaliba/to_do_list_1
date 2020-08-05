@@ -77,7 +77,7 @@ import { isLoggedIn } from '../ui/AccountsUIWrapperLogin';
         <Typography variant="h4" component="h2" >
             Lista de Tarefas   
         </Typography>      
-          <AccountsUIWrapper/>
+          
           { this.props.currentUser ?
             <form className="new-task" onSubmit={this.handleSubmit.bind(this)} >
               <input

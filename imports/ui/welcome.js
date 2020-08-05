@@ -38,7 +38,7 @@ export default class Welcome extends Component {
         <header>
           <div>
               {!isLoggedIn() ?
-              <Typography variant="h6" gutterBottom>
+              <Typography variant="h5" gutterBottom>
                 Seja bem vindo(a)!<p>
                 Você precisa logar para acessar as tarefas.</p>
               </Typography>: ''}
