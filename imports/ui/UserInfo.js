@@ -73,7 +73,7 @@ class UserInfo extends Component {
         });
     }
   
-    handlePhoto = (event) => {
+    handlePhoto = (files) => {
      this.setState({
          photo: files
        });
@@ -110,6 +110,7 @@ class UserInfo extends Component {
               User Profile
             </Typography>
         </header> 
+        {this.props.currentUser ?
         <div>  
             <Typography variant="h6">{'Nome:'}</Typography><p>
             <TextField  type={'text'} id={'name'} value={this.state.name} onChange={this.handleName.bind(this)}/></p>
@@ -136,8 +137,10 @@ class UserInfo extends Component {
             <Typography variant="h6">{'Foto:'}</Typography><p>
             <TextField  type={'file'} id={'photo'} value={this.state.photo} onChange={this.handlePhoto}/></p>
           </div>
+          : ''}
            <div>
-             <Button onClick={this.save}>{'Salvar'}</Button>
+           {this.props.currentUser ?
+             <Button onClick={this.save}>{'Salvar'}</Button> : ''}
            </div>
 
       </div>

@@ -16,13 +16,11 @@ import TextField from '@material-ui/core/TextField';
 
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
-
+//import { createBrowserHistory } from "history";
+//export const history = createBrowserHistory();
 
 import { Router, Switch, Route, Link, withRouter } from 'react-router-dom'
 
-//import { createBrowserHistory } from "history";
-
-//export const history = createBrowserHistory();
 
 export const isLoggedIn = () => {
   return Boolean(Meteor.userId());
@@ -139,10 +137,13 @@ class Login extends Component {
 
   render() {
     return (
+      <Router history={this.props.history}>
       <div className="container">
         <header>
           <div>
-              
+          <Typography variant="h4" component="h2" >
+                    Login    
+              </Typography>
           </div>
         </header>
 
@@ -175,21 +176,20 @@ class Login extends Component {
 
                   <Button
                     style={styles.button}
-                    label="Sign In"
+                    label="Log In"
                     primary="true"
-                    variant="contained"
+                  
                     type='submit'
                     onClick={this.onSignIn.bind(this)}
                  >
-                    <Typography style={styles.buttonText}> Sign In </Typography>
+                    <Typography style={styles.buttonText}> Log In </Typography>
                   </Button>
+                  <Button onClick={()=>this.props.history.push('/userlog')}>{'Voltar'}</Button>
                 </form>
           </Grid>
       </div>
-      <div>
-
-      </div>
     </div>
+    </Router>
     );
   }
 }

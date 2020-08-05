@@ -5,14 +5,14 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 
 import Login from './AccountsUIWrapperLogin.js';
-import About from '../template/about.jsx'
+//import About from '../template/about.jsx'
+import Logout from './AccountsUIWrapperLogout.js';
+import Register from './register.js';
 //import AccountsUIWrapperLogout from './AccountsUIWrapperLogout.js';
+import { Router, Switch, Route, Link, withRouter } from 'react-router-dom'
+import { createBrowserHistory } from "history";
 
-//import Login from '../components/Login.js';
-
-//import Logout from '../components/Logout.js';
-
-//import Register from '../components/Register.js';
+export const history = createBrowserHistory();
 
 const requireAuth = (nextState, replace) => {
   if (isLoggedOut()) {
@@ -29,11 +29,12 @@ export const isLoggedOut = () => {
   return !Meteor.userId();
 };
 
-export default class Welcome extends Component {
+export default class Logs extends Component {
 
   render() {
     // Just render a placeholder container that will be filled in
     return (
+    <Router history={this.props.history}>
       <div className="container">
         <header>
           <div>
@@ -46,12 +47,16 @@ export default class Welcome extends Component {
         </header>
 
         <div>
-          {!isLoggedIn() ? <Login /> : <About/>}
-        </div>
+        {!isLoggedIn() ? 
+        <Button onClick={()=>this.props.history.push('/login')}>{'Login'}</Button>:
+        <Button onClick={()=>this.props.history.push('/logout')}>{'Logout'}</Button>}
         <div>
-         <Button onClick={()=>this.props.history.push('/register')}>{'Registrar'}</Button>
+        {!isLoggedIn() ?
+         <Button onClick={()=>this.props.history.push('/register')}>{'Registrar'}</Button>:''}
+      </div>
         </div>
       </div>
+    </Router>
 
   );
   }

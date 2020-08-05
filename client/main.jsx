@@ -8,6 +8,7 @@ import App from '../imports/ui/App.jsx';
 //import { Menu } from '@material-ui/core';
 import { BrowserRouter } from 'react-router-dom';
 import SimpleMenu from '../imports/template/menu.js';
+import ResponsiveDrawer from '../imports/ui/drawer';
 
 Meteor.startup(() => {
   render(
