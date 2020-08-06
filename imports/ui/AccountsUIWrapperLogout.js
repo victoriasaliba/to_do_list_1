@@ -31,7 +31,7 @@ class Logout extends Component {
 
   logout() {
       Meteor.logout();
-      this.props.history.push('/about');
+      this.props.history.push('/login');
   }
   
   render() {
@@ -41,14 +41,14 @@ class Logout extends Component {
       <Grid container style={styles.container}>
          <header>
           <div>
+            <Typography variant="h6" component="h2">Tem certeza que quer sair?</Typography>
               <Button
                 style={styles.button}
                 label="Log Out"
                 primary="true"
-               
                 type='submit'
                 onClick={this.logout.bind(this)}>
-                <Typography style={styles.buttonText}> Log Out </Typography>
+                {'Log Out'}
               </Button>
               <Button onClick={()=>this.props.history.push('/userlog')}>{'Voltar'}</Button>
           </div>

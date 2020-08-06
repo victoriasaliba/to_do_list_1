@@ -298,7 +298,7 @@ class Register extends Component {
                     primary="true"
                     type='submit'
                     onClick={this.onCreateAccount}>
-                    <Typography style={styles.buttonText}> Registrar </Typography>
+                    {'Registrar'}
                   </Button>
                   <div>
                     <Button onClick={()=>this.props.history.push('/userlog')}>{'Voltar'}</Button>

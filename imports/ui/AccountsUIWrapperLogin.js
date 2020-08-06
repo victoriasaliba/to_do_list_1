@@ -166,13 +166,11 @@ class Login extends Component {
 
                   <Button
                     style={styles.button}
-                    label="Log In"
-                    primary="true"
-                  
+                    label="Log In"        
                     type='submit'
                     onClick={this.onSignIn.bind(this)}
                  >
-                    <Typography style={styles.buttonText}> Log In </Typography>
+                    {'Log In'}
                   </Button>
                   <Button onClick={()=>this.props.history.push('/userlog')}>{'Voltar'}</Button>
                 </form>

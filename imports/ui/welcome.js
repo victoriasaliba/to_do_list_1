@@ -32,7 +32,6 @@ export const isLoggedOut = () => {
 export default class Welcome extends Component {
 
   render() {
-    // Just render a placeholder container that will be filled in
     return (
       <div className="container">
         <header>
@@ -47,9 +46,11 @@ export default class Welcome extends Component {
 
         <div>
           {!isLoggedIn() ? <Login /> : <About/>}
+          {isLoggedIn() ? this.props.history.push('/about'):''}
         </div>
         <div>
-         <Button onClick={()=>this.props.history.push('/register')}>{'Registrar'}</Button>
+          {!isLoggedIn() ? 
+         <Button onClick={()=>this.props.history.push('/register')}>{'Registrar'}</Button> : ''}
         </div>
       </div>
 
