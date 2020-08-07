@@ -61,7 +61,7 @@ import { makeStyles } from '@material-ui/core/styles';
 
                 <Card className="card4" variant="outlined">
                   <CardContent >
-                    <Button onClick={()=>this.props.history.push('/home')}>{'Visualizar Tarefas'}</Button>
+                    <Button variant="contained" onClick={()=>this.props.history.push('/home')}>{'Visualizar Tarefas'}</Button>
                 </CardContent>
                 </Card>
 

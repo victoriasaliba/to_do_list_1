@@ -199,6 +199,9 @@ class Register extends Component {
               <span className="text">
                 <ListItem key="name" text="true">
                   <TextField
+                    variant="outlined"
+                    margin="normal"
+                   
                     type='text'
                     onChange={this.handleName}
                     label="Nome"
@@ -210,6 +213,9 @@ class Register extends Component {
 
                 <ListItem key="birthday" text="true">
                   <TextField
+                    variant="outlined"
+                    margin="normal"
+                   
                     clearable="true"
                     type='date'
                     style={styles.input}
@@ -224,6 +230,9 @@ class Register extends Component {
 
                 <ListItem key="gender" text="true">
                   <TextField
+                    variant="outlined"
+                    margin="normal"
+                   
                     type='select'
                     style={styles.input}
                     onChange={this.handleGender}
@@ -241,6 +250,9 @@ class Register extends Component {
 
                 <ListItem key="company" text="true">
                   <TextField
+                    variant="outlined"
+                    margin="normal"
+                  
                     type='email'
                     style={styles.input}
                     onChange={this.handleCompany}
@@ -253,6 +265,9 @@ class Register extends Component {
 
                 <ListItem key="file" text="true">
                 <TextField
+                variant="outlined"
+                margin="normal"
+               
                   type='text'
                   style={styles.input}
                   placeholder="Foto"
@@ -267,6 +282,9 @@ class Register extends Component {
 
                 <ListItem key="email" text="true">
                 <TextField
+                variant="outlined"
+                margin="normal"
+                
                   type='email'
                   style={styles.input}
                   onChange={this.handleEmail}
@@ -279,6 +297,9 @@ class Register extends Component {
 
                 <ListItem key="password" text="true">
                 <TextField
+                variant="outlined"
+                margin="normal"
+              
                   type='password'
                   style={styles.input}
                   onChange={this.handlePassword}
@@ -293,6 +314,7 @@ class Register extends Component {
 
                 <ListItem>
                   <Button
+                    variant="contained"
                     style={styles.button}
                     label="Create Account"
                     primary="true"
@@ -301,7 +323,7 @@ class Register extends Component {
                     {'Registrar'}
                   </Button>
                   <div>
-                    <Button onClick={()=>this.props.history.push('/userlog')}>{'Voltar'}</Button>
+                    <Button  variant="contained" onClick={()=>this.props.history.push('/userlog')}>{'Voltar'}</Button>
                   </div>
                 </ListItem>
               </span>

@@ -35,9 +35,8 @@ import userLogs from '../ui/userLogs.js'
 import Register from '../ui/register.js';
 import Logout from '../ui/AccountsUIWrapperLogout.js';
 
-
 const useStyles = makeStyles((theme) => ({
-  drawerPaper: { width: 'inherit' },
+  drawerPaper: { width: 'inherit'},
   link: {
     textDecoration: 'none',
     color: theme.palette.text.primary
@@ -50,7 +49,7 @@ export default function SimpleMenu() {
     <Router>
       <div >
         <Drawer
-          style={{ width: '220px' }}
+          style={{ width: '200px'}}
           variant="persistent"
           anchor="left"
           open={true}
@@ -90,6 +89,7 @@ export default function SimpleMenu() {
               </ListItem>
             </Link>
           </List>
+          
         </Drawer>
                 <Route path="/home" component={App}/>
                 <Route path="/about" component={About}/>

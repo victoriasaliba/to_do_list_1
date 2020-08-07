@@ -103,22 +103,19 @@ class EditTask extends Component {
               <NativeSelect
                 value={this.state.situation}
                 onChange={this.handleChangeSituation}
-                inputProps={{
-                  situation: 'situation',
-                }}
               >
                   <option value="Cadastrada">Cadastrada</option>
-                  {this.state.situation=== "Cadastrada"?
+                  {this.state.situation=== "Cadastrada"||this.state.situation=== "Em Andamento"?
                   <option value="Em Andamento">Em Andamento</option> :''}
-                  {this.state.situation=== "Em Andamento"?
+                  {this.state.situation=== "Em Andamento"||this.state.situation=== "Concluída"?
                   <option value="Concluída">Concluída</option> :''}
               </NativeSelect>
             </FormControl></p>
 
           </div>
            <div>
-             <Button onClick={()=>this.props.history.push('/home')}>{'Voltar'}</Button>
-             <Button onClick={this.save}>{'Salvar'}</Button>
+             <Button variant="contained" onClick={()=>this.props.history.push('/home')}>{'Voltar'}</Button>
+             <Button variant="contained" onClick={this.save}>{'Salvar'}</Button>
            </div>
 
       </div>

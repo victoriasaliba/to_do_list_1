@@ -47,10 +47,11 @@ class Logout extends Component {
                 label="Log Out"
                 primary="true"
                 type='submit'
+                variant="contained"
                 onClick={this.logout.bind(this)}>
                 {'Log Out'}
               </Button>
-              <Button onClick={()=>this.props.history.push('/userlog')}>{'Voltar'}</Button>
+              <Button variant="contained" onClick={()=>this.props.history.push('/userlog')}>{'Voltar'}</Button>
           </div>
         </header>
       </Grid>

@@ -52,7 +52,6 @@ export const history = createBrowserHistory();
         private: this.props.task.private,
       }); 
     return (
-     
       <List className={taskClassName}>
          <Router history={this.props.history}>
             <DeleteIcon className="delete" onClick={this.deleteThisTask.bind(this)}>
@@ -60,7 +59,7 @@ export const history = createBrowserHistory();
             </DeleteIcon>
             <EditIcon className="edit" onClick={this.editThisTask.bind(this)}>
             </EditIcon> 
-          <Avatar>
+          <Avatar style={{margin: 'left'}}>
              <AssignmentIcon />
          </Avatar>
          
@@ -73,10 +72,10 @@ export const history = createBrowserHistory();
      
         <span className="text">
           <strong>{this.props.task.username}</strong>: {this.props.task.text}
-        </span>
+          <p><strong>{'Descrição:'}</strong> {this.props.task.description}</p>
+          </span>
         </Router>
         </List>
-    
     );
   }
 }

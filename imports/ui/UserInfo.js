@@ -140,7 +140,7 @@ class UserInfo extends Component {
           : ''}
            <div>
            {this.props.currentUser ?
-             <Button onClick={this.save}>{'Salvar'}</Button> : ''}
+             <Button variant="contained" onClick={this.save}>{'Salvar'}</Button> : ''}
            </div>
 
       </div>

@@ -4,9 +4,12 @@ import { withStyles } from '@material-ui/core/styles';
 
 import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
-
+import Container from '@material-ui/core/Container';
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
+import CssBaseline from '@material-ui/core/CssBaseline';
+import Avatar from '@material-ui/core/Avatar';
+import LockIcon from '@material-ui/icons/Lock';
 //import { createBrowserHistory } from "history";
 //export const history = createBrowserHistory();
 
@@ -22,6 +25,8 @@ const styles = () => ({
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#F5FCFF',
+    display: 'flex',
+    flexDirection: 'column',
   },
   input: {
     fontSize: 16,
@@ -127,32 +132,38 @@ class Login extends Component {
 
   render() {
     return (
-     
-      <div className="container">
+      <div className="log">
         <header>
           <div>
-          <Typography variant="h4" component="h2" >
+          <Avatar>
+            <LockIcon/>
+          </Avatar>
+          <Typography variant="h5" component="h2" >
                     Login    
               </Typography>
           </div>
         </header>
-
-        <div>
-          <Grid container style={styles.container}>
-
-            <form >
-
+        <div className="button" >
                 <TextField
+                  variant="outlined"
+                  margin="normal"
+                  required
+                  fullWidth
                   type='name'
                   style={styles.input}
                   onChange={this.handleName}
-                  placeholder="Nome"
+                  placeholder="Name"
                   autoCapitalize="none"
                   autoCorrect="false"
                   keyboardtype="name"
                 />
-
+        </div>
+             <div className="button" >
                 <TextField
+                  variant="outlined"
+                  margin="normal"
+                  required
+                  fullWidth
                   type='password'
                   style={styles.input}
                   onChange={this.handlePassword}
@@ -161,25 +172,26 @@ class Login extends Component {
                   autoCorrect="false"
                   securetextentry="true"
                   />
-
+               </div>
+                  <div className="button">
+              
                   <Typography style={styles.error}> { this.state.error } </Typography>
 
                   <Button
                     style={styles.button}
                     label="Log In"        
                     type='submit'
+                    variant="contained"
                     onClick={this.onSignIn.bind(this)}
                  >
                     {'Log In'}
                   </Button>
-                  <Button onClick={()=>this.props.history.push('/userlog')}>{'Voltar'}</Button>
-                </form>
-          </Grid>
+                  <Button variant="contained" onClick={()=>this.props.history.push('/userlog')}>{'Voltar'}</Button>
+           
+          
+        </div>
       </div>
-    </div>
-    
     );
   }
 }
-
 export default withStyles(styles)((Login));
