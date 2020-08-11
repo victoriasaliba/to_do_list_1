@@ -52,7 +52,7 @@ export const history = createBrowserHistory();
         private: this.props.task.private,
       }); 
     return (
-      <List className={taskClassName}>
+      <List className={taskClassName} style={{marginLeft: '20px', marginRight: '20px'}}>
          <Router history={this.props.history}>
             <DeleteIcon className="delete" onClick={this.deleteThisTask.bind(this)}>
                 &times;

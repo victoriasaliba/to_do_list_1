@@ -6,6 +6,8 @@ import Typography from '@material-ui/core/Typography';
 
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
+import Avatar from '@material-ui/core/Avatar';
+import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 
 const styles = () => ({
   container: {
@@ -37,11 +39,16 @@ class Logout extends Component {
   render() {
 
     return (
-     <div className='container'>
+     <div className="log">
       <Grid container style={styles.container}>
          <header>
           <div>
-            <Typography variant="h6" component="h2">Tem certeza que quer sair?</Typography>
+            <Avatar style={{alignItems: "center"}}>
+              <ExitToAppIcon/>
+            </Avatar>
+          <Typography>
+            Tem certeza de que quer sair?
+          </Typography>
               <Button
                 style={styles.button}
                 label="Log Out"
@@ -51,7 +58,7 @@ class Logout extends Component {
                 onClick={this.logout.bind(this)}>
                 {'Log Out'}
               </Button>
-              <Button variant="contained" onClick={()=>this.props.history.push('/userlog')}>{'Voltar'}</Button>
+             
           </div>
         </header>
       </Grid>

@@ -135,12 +135,13 @@ class Login extends Component {
       <div className="log">
         <header>
           <div>
-          <Avatar>
+          <Avatar style={{alignItems: "center"}}>
             <LockIcon/>
           </Avatar>
+          <p>
           <Typography variant="h5" component="h2" >
                     Login    
-              </Typography>
+              </Typography></p>
           </div>
         </header>
         <div className="button" >

@@ -35,6 +35,7 @@ import userLogs from '../ui/userLogs.js'
 import Register from '../ui/register.js';
 import Logout from '../ui/AccountsUIWrapperLogout.js';
 
+
 const useStyles = makeStyles((theme) => ({
   drawerPaper: { width: 'inherit'},
   link: {
@@ -42,6 +43,7 @@ const useStyles = makeStyles((theme) => ({
     color: theme.palette.text.primary
   }
 }))
+
 
 export default function SimpleMenu() {
   const classes = useStyles();
@@ -80,14 +82,16 @@ export default function SimpleMenu() {
                 <ListItemText primary={"About"} />
               </ListItem>
             </Link>
+            
             <Link to="/userlog" className={classes.link}>
               <ListItem button>
                 <ListItemIcon>
                  
                 </ListItemIcon>
-                <ListItemText primary={"Log"} />
+                <ListItemText primary={"User"} />
               </ListItem>
-            </Link>
+            </Link> 
+           
           </List>
           
         </Drawer>

@@ -111,7 +111,7 @@ class UserInfo extends Component {
             </Typography>
         </header> 
         {this.props.currentUser ?
-        <div>  
+        <div style={{marginLeft: '20px'}}>  
             <Typography variant="h6">{'Nome:'}</Typography><p>
             <TextField  type={'text'} id={'name'} value={this.state.name} onChange={this.handleName.bind(this)}/></p>
             <Typography variant="h6">{'Email:'}</Typography><p>

@@ -20,8 +20,7 @@ body {
   background: white;
   display: flex;
   flex-direction: column;
-  margin-left: 170px;
-  align-self: center;
+  align-self: center; 
 }
 
 
@@ -32,10 +31,11 @@ body {
   background: white;
   display: flex;
   flex-direction: column;
-  margin-left: 170px;
   align-self: center;
   align-items: center;
 }
+
+
 
 
 .menu{

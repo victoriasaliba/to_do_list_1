@@ -33,24 +33,22 @@ export default class Welcome extends Component {
 
   render() {
     return (
-      <div className="container">
+      <div className="log">
         <header>
-          <div>
               {!isLoggedIn() ?
               <Typography variant="h5" gutterBottom>
                 Seja bem vindo(a)!<p>
                 Você precisa logar para acessar as tarefas.</p>
               </Typography>: ''}
-          </div>
         </header>
 
-        <div>
+      
           {!isLoggedIn() ? <Login /> : <About/>}
           {isLoggedIn() ? this.props.history.push('/about'):''}
-        </div>
+   
         <div>
           {!isLoggedIn() ? 
-         <Button onClick={()=>this.props.history.push('/register')}>{'Registrar'}</Button> : ''}
+         <p><Button variant="contained" onClick={()=>this.props.history.push('/register')}>{'Registrar'}</Button></p> : ''}
         </div>
       </div>
 
