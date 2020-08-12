@@ -21,6 +21,7 @@ body {
   display: flex;
   flex-direction: column;
   align-self: center; 
+  margin-left: 200px;
 }
 
 
@@ -33,6 +34,7 @@ body {
   flex-direction: column;
   align-self: center;
   align-items: center;
+  margin-left: 200px;
 }
 
 

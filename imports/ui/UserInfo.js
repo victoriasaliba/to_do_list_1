@@ -12,6 +12,7 @@ import Icon from '@material-ui/core/Icon';
 import Users from '../api/users.js'
 import FileBase64 from 'react-file-base64';
 import TextField from '@material-ui/core/TextField';
+import Avatar from 'react-avatar-edit';
 
 class UserInfo extends Component {
   constructor(props){
@@ -23,7 +24,7 @@ class UserInfo extends Component {
       birthday:undefined,
       gender:undefined,
       company:undefined,
-      photo:undefined,
+      photo:null,
     }
   }
     
@@ -73,9 +74,9 @@ class UserInfo extends Component {
         });
     }
   
-    handlePhoto = (files) => {
+    handlePhoto = (event) => {
      this.setState({
-         photo: files
+         photo: URL.createObjectURL(event.target.files[0])
        });
     }
 
@@ -134,8 +135,9 @@ class UserInfo extends Component {
             </FormControl></p>
             <Typography variant="h6">{'Empresa:'}</Typography><p>
             <TextField  type={'text'} id={'company'} value={this.state.company} onChange={this.handleCompany}/></p>
-            <Typography variant="h6">{'Foto:'}</Typography><p>
-            <TextField  type={'file'} id={'photo'} value={this.state.photo} onChange={this.handlePhoto}/></p>
+            <Typography variant="h6">{'Foto:'}</Typography>
+            <img src={this.state.photo}/>
+            <input type="file" id="photo" onChange={this.handlePhoto}/>
           </div>
           : ''}
            <div>

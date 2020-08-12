@@ -71,7 +71,7 @@ class Register extends Component {
      birthday: new Date(),
      gender: '',
      company: '',
-     photo: [],
+     photo: null,
      password: '',
      error: null,
    }
@@ -108,11 +108,11 @@ class Register extends Component {
       });
   }
 
-  handlePhoto = (files) => {
-   this.setState({
-       photo: files
-     });
-  }
+  handlePhoto = (event) => {
+    this.setState({
+        photo: URL.createObjectURL(event.target.files[0])
+      });
+   }
   handleError = (event) => {
     this.setState({
         error: event.target.value
@@ -264,27 +264,14 @@ class Register extends Component {
                 </ListItem>
 
                 <ListItem key="file" text="true">
-                <TextField
-                variant="outlined"
-                margin="normal"
-               
-                  type='text'
-                  style={styles.input}
-                  placeholder="Foto"
-                  disabled={true}
-                  autoCapitalize="none"
-                  autoCorrect="false"
-                />
-                  <FileBase64
-                    multiple={ true }
-                    onDone={ this.handlePhoto} />
+                <img src={this.state.photo}/>
                 </ListItem>
+                <input type="file" onChange={this.handlePhoto}/>
 
                 <ListItem key="email" text="true">
                 <TextField
-                variant="outlined"
-                margin="normal"
-                
+                  variant="outlined"
+                  margin="normal"
                   type='email'
                   style={styles.input}
                   onChange={this.handleEmail}
@@ -297,9 +284,8 @@ class Register extends Component {
 
                 <ListItem key="password" text="true">
                 <TextField
-                variant="outlined"
-                margin="normal"
-              
+                  variant="outlined"
+                  margin="normal"
                   type='password'
                   style={styles.input}
                   onChange={this.handlePassword}
