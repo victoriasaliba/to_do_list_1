@@ -108,11 +108,9 @@ class Register extends Component {
       });
   }
 
-  handlePhoto = (event) => {
-    this.setState({
-        photo: URL.createObjectURL(event.target.files[0])
-      });
-   }
+  getPhoto(files){
+    this.setState({ photo: files })
+  }
   handleError = (event) => {
     this.setState({
         error: event.target.value
@@ -262,11 +260,10 @@ class Register extends Component {
                     keyboardtype="email-address"
                   />
                 </ListItem>
-
-                <ListItem key="file" text="true">
-                <img src={this.state.photo}/>
-                </ListItem>
-                <input type="file" onChange={this.handlePhoto}/>
+                
+                <FileBase64
+                  multiple={ true }
+                  onDone={ this.getPhoto.bind(this) } />
 
                 <ListItem key="email" text="true">
                 <TextField

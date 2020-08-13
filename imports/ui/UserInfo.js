@@ -13,6 +13,7 @@ import Users from '../api/users.js'
 import FileBase64 from 'react-file-base64';
 import TextField from '@material-ui/core/TextField';
 import Avatar from 'react-avatar-edit';
+import { data } from 'jquery';
 
 class UserInfo extends Component {
   constructor(props){
@@ -74,14 +75,17 @@ class UserInfo extends Component {
         });
     }
   
-    handlePhoto = (event) => {
+    /*handlePhoto = (event) => {
      this.setState({
          photo: URL.createObjectURL(event.target.files[0])
        });
+    }*/
+    getPhoto(files){
+      this.setState({ photo: files })
     }
-
     save = () => {
       console.log('THIS.STATE>>>',this.state)
+      console.log(this.state.photo);
       Meteor.call('users.update', { _id:this.props.user._id,username:this.state.name,
           profile: {
               email: this.state.email,
@@ -136,8 +140,13 @@ class UserInfo extends Component {
             <Typography variant="h6">{'Empresa:'}</Typography><p>
             <TextField  type={'text'} id={'company'} value={this.state.company} onChange={this.handleCompany}/></p>
             <Typography variant="h6">{'Foto:'}</Typography>
-            <img src={this.state.photo}/>
-            <input type="file" id="photo" onChange={this.handlePhoto}/>
+            { this.state.photo.map((photo,i) => {
+              return <img key={i} src={photo.base64} />
+            }) }
+          <img src="" />
+            <FileBase64
+              multiple={ true }
+              onDone={ this.getPhoto.bind(this) } />
           </div>
           : ''}
            <div>
