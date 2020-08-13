@@ -148,7 +148,10 @@ class UserInfo extends Component {
               multiple={ true }
               onDone={ this.getPhoto.bind(this) } />
           </div>
-          : ''}
+          : 
+          <Typography style={{ textAlign: "center"}}variant="h5" gutterBottom>
+            Você precisa logar para acessar o User Profile.
+          </Typography>}
            <div>
            {this.props.currentUser ?
              <Button variant="contained" onClick={this.save}>{'Salvar'}</Button> : ''}

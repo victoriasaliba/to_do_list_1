@@ -1,2 +1,3 @@
 # to_do_list_1
-Tutorial Meteor
+Implementação de uma To Do list no Meteor avançada.
+Synergia 2020.

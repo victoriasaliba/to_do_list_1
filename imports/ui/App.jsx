@@ -87,7 +87,10 @@ import { isLoggedIn } from '../ui/AccountsUIWrapperLogin';
                 ref="textInput"
                 placeholder="Adicione novas tarefas"
               />
-            </form> : ''
+            </form> : 
+            <Typography variant="h5" gutterBottom>
+              Você precisa logar para acessar as tarefas.
+            </Typography>
           }
         </header>
  

@@ -29,7 +29,7 @@ export default class Logs extends Component {
         <header>
           <div>
               {!isLoggedIn() ?
-              <Typography variant="h5" gutterBottom>
+              <Typography variant="h5" component="h2">
                 Seja bem vindo(a)!<p>
                 Você precisa logar para acessar as tarefas.</p>
               </Typography>: ''}
@@ -37,8 +37,8 @@ export default class Logs extends Component {
         </header>
         {!isLoggedIn() ? 
           <Button variant="contained" onClick={()=>this.props.history.push('/login')}>{'Login'}</Button>
-            :<div classname="log">
-               <Avatar style={{alignItems: "center"}}>
+            :<div>
+               <Avatar style={{marginLeft: "110px"}}>
                 <ExitToAppIcon/>
               </Avatar>
               <p></p>
@@ -46,7 +46,7 @@ export default class Logs extends Component {
                 Tem certeza de que quer sair?
               </Typography>
               <p></p>
-              <Button variant="contained" onClick={this.logout.bind(this)}>{'Logout'}</Button>
+              <Button  style={{marginLeft: "80px"}} variant="contained" onClick={this.logout.bind(this)}>{'Logout'}</Button>
            </div>
         }
         {!isLoggedIn() ?

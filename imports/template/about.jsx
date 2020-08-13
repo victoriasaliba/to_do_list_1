@@ -9,6 +9,7 @@ import CardContent from '@material-ui/core/CardContent';
 import { withTracker } from 'meteor/react-meteor-data';
 import { Tasks } from '../api/tasks.js';
 import { makeStyles } from '@material-ui/core/styles';
+import { isLoggedIn } from '../ui/userLogs.js';
 
 
  class About extends Component{
@@ -21,9 +22,13 @@ import { makeStyles } from '@material-ui/core/styles';
         return(
            <div className="container">
              <header>
+              {!isLoggedIn ? 
               <Typography variant="h4" component="h2" >
                     Seja bem vindo(a)!    
-              </Typography>
+              </Typography> :
+              <Typography variant="h4" component="h2">
+                Você precisa realizar o Login!
+              </Typography> }
              </header>      
                <div>
                <Card className="card1" variant="outlined" allign="true">
